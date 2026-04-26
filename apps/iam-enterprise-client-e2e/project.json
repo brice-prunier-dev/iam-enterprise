@@ -1,0 +1,9 @@
+{
+  "name": "iam-enterprise-client-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/iam-enterprise-client-e2e/src",
+  "implicitDependencies": ["iam-enterprise-client"],
+  "// targets": "to see all targets run: nx show project iam-enterprise-client-e2e --web",
+  "targets": {}
+}

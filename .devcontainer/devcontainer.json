@@ -1,0 +1,47 @@
+{
+  "name": "IAM Enterprise Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "shutdownAction": "stopCompose",
+  "workspaceFolder": "/workspaces/iam-enterprise",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/dotnet:1": {
+      "version": "10"
+    },
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "angular.ng-template",
+        "ms-vscode.vscode-json",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-vscode.vscode-eslint",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install spec-kitty-cli && npm install -g @anthropic-ai/claude-code",
+  "forwardPorts": [3000, 4200, 5000, 27017],
+  "portsAttributes": {
+    "3000": {
+      "label": "Spec Kitty Dashboard"
+    },
+    "4200": {
+      "label": "Angular Client"
+    },
+    "5000": {
+      "label": "NestJS API"
+    },
+    "27017": {
+      "label": "MongoDB"
+    }
+  }
+}

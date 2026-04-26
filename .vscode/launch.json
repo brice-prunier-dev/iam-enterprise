@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug iam-enterprise-webapi with Nx",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "iam-enterprise-webapi"],
+      "env": {
+        "NODE_OPTIONS": "--inspect=9229"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/iam-enterprise-webapi/dist/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    },
+    {
+      "name": "Apim-Enterprise-WebApi Build",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": ["build", "${workspaceFolder}/apps/apim-enterprise-webapi/apim-enterprise-webapi.csproj"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+  ],
+  "tasks": [
+    {
+      "label": "apim-build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/apps/apim-enterprise-webapi/apim-enterprise-webapi.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    }
+  ]
+}

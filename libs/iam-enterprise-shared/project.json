@@ -1,0 +1,28 @@
+{
+  "name": "iam-enterprise-shared",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/iam-enterprise-shared/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/iam-enterprise-shared",
+        "main": "libs/iam-enterprise-shared/src/index.ts",
+        "tsConfig": "libs/iam-enterprise-shared/tsconfig.lib.json",
+        "assets": ["libs/iam-enterprise-shared/*.md"],
+        "format": ["cjs"],
+        "generatePackageJson": true
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/iam-enterprise-shared/jest.config.cts"
+      }
+    }
+  }
+}
