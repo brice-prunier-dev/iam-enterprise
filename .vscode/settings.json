@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^pnpm add @nx/angular@22\\.7\\.0 @nx/devkit@22\\.7\\.0 @nx/dotnet@22\\.7\\.0 @nx/esbuild@22\\.7\\.0 @nx/eslint@22\\.7\\.0 @nx/eslint-plugin@22\\.7\\.0 @nx/jest@22\\.7\\.0 @nx/js@22\\.7\\.0 @nx/nest@22\\.7\\.0 @nx/node@22\\.7\\.0 @nx/playwright@22\\.7\\.0 @nx/web@22\\.7\\.0 @nx/webpack@22\\.7\\.0 -w$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pnpm --version$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

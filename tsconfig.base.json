@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "declaration": true,
     "declarationMap": true,
     "importHelpers": true,
     "isolatedModules": true,

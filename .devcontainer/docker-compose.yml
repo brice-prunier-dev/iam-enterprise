@@ -8,6 +8,9 @@ services:
     working_dir: /workspaces/iam-enterprise
     environment:
       - NODE_ENV=development
+      - PNPM_HOME=/home/vscode/.local/share/pnpm
+      - PNPM_HOME=/home/vscode/.local/share/pnpm
+      - PATH=/home/vscode/.local/share/pnpm:${PATH}
     networks:
       - iam-enterprise-network
 

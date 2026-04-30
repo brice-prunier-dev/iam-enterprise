@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": []
+     "types": [],
+    "lib": ["ES2022", "dom"]  // Add "dom" here
   },
   "include": ["src/**/*.ts"],
   "exclude": [

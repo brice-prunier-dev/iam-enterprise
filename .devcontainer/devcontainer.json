@@ -28,7 +28,7 @@
       ]
     }
   },
-  "postCreateCommand": "pip install spec-kitty-cli && npm install -g @anthropic-ai/claude-code",
+  "postCreateCommand": "corepack enable && corepack prepare pnpm@10.33.2 --activate && pip install spec-kitty-cli",
   "forwardPorts": [3000, 4200, 5000, 27017],
   "portsAttributes": {
     "3000": {
