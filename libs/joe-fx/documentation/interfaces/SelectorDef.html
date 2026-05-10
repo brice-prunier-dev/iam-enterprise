@@ -1,0 +1,973 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  SelectorDef</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/core/paths.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>{ key: PathRole, part: any}}</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#text" 
+>
+                                            text
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#type" 
+>
+                                            type
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#value" 
+>
+                                            value
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="text"></a>
+                                        <span class="name "><b>text</b>
+                                            <a href="#text">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>text:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name "><b>type</b>
+                                            <a href="#type">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:         <code><a href="../miscellaneous/enumerations.html#SelectorTypes" target="_self" >SelectorTypes</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#SelectorTypes" target="_self" >SelectorTypes</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="value"></a>
+                                        <span class="name "><b>value</b>
+                                            <a href="#value">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>value:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {isArray, isFunction, isJsObject, isNumber} from &#x27;./types-helper&#x27;;
+import {MetadataHelper} from &#x27;./types-info&#x27;;
+import {OType} from &#x27;./types&#x27;;
+import {isBlank, isStringAssigned} from &#x27;./types-tester&#x27;;
+import {SelectorTypes} from &#x27;./enums&#x27;;
+import {
+    DOUBLEQUOTE,
+    KEYVALUEPAIR_SEPARATOR,
+    KEYVALUE_SEPARATOR,
+    NUMERIC_PREFIX,
+    PATH_LOCAL,
+    PATH_NEXT,
+    PATH_PARENT,
+    PATH_ROOT,
+    QUOTE
+} from &#x27;./constants&#x27;;
+
+//
+// ─── HREF ───────────────────────────────────────────────────────────────────────
+//
+
+/**
+ * { key: PathRole, part: any}}
+ */
+interface SelectorDef {
+    type: SelectorTypes;
+    value: any;
+    text: string;
+}
+
+/**
+ * Encode a  value that is an index selector in a joe paths
+ * that method target numeric value to disting value that can either be
+ * - an index position of an array : intance&gt;array&gt;[1]
+ * from numeric value that can be
+ * - an index value of a collection: instance&gt;list&gt;(#18)
+ * @param &#x27;Xxx&#x27; or 12 or 1.23
+ * @returns Xxx or #12 or ##1.23
+ */
+function _encodeOneSelectorValue(value: string | number): string {
+    return isNumber(value)
+        ? Number.isInteger(value)
+            ? NUMERIC_PREFIX + value
+            : NUMERIC_PREFIX + NUMERIC_PREFIX + value
+        : (value as string);
+}
+/**
+ * take a path value an return its real value
+ * @param stringValue string | number  as Xxx or #12 or ##1.23
+ * @returns Xxx or 12 or 1.23
+ */
+export function decodeOneSelectorValue(stringValue: string): string | number {
+    return stringValue[0] &#x3D;&#x3D;&#x3D; NUMERIC_PREFIX
+        ? stringValue[1] &#x3D;&#x3D;&#x3D; NUMERIC_PREFIX
+            ? Number.parseFloat(stringValue.substring(2))
+            : Number.parseInt(stringValue.substring(1))
+        : stringValue;
+}
+/**
+ * Count how many char a string contains
+ */
+export function countChar(str: string, char: string): number {
+    return str.split(char).length - 1;
+}
+/**
+ * Is it a valid string parameter ?
+ * Should be surround by &quot; or &#x27;.
+ * @example
+ * &#x27;...&#x27; or &quot;...&quot;
+ * @param text input text.
+ */
+function isTextString(text: string): boolean {
+    return isStringAssigned(text)
+        ? (text.startsWith(QUOTE) &amp;&amp; text.endsWith(QUOTE)) ||
+        (text.startsWith(DOUBLEQUOTE) &amp;&amp; text.endsWith(DOUBLEQUOTE))
+        : false;
+}
+/**
+ * Is input string an array parameter: begins and ends with a braket.
+ * @example
+ * [...] 
+ * @param text input text.
+ */
+export function isTextArray(text: string): boolean {
+    return text.startsWith(&#x27;[&#x27;) &amp;&amp; text.endsWith(&#x27;]&#x27;);
+}
+/**
+ * Is it an object parameter: begins and ends with a curly brace.
+ * @example
+ * {...} 
+ * @param text input text.
+ */
+export function isTextObject(text: string): boolean {
+    return isStringAssigned(text) &amp;&amp; text.startsWith(&#x27;{&#x27;) &amp;&amp; text.endsWith(&#x27;}&#x27;);
+}
+/**
+ * Is input string an Index selector: begins and ends with a parenthese.
+ * @example
+ * (...) 
+ * @param text input text.
+ */
+function isIndexSelector(text: string): boolean {
+    return text.startsWith(&#x27;(&#x27;) &amp;&amp; text.endsWith(&#x27;)&#x27;);
+}
+/**
+ * Turn an int into a array selector : [N].
+ * @param index input value.
+ */
+export function wrapAsPositionSelector(index: number | string): string {
+    return &#x60;[${index}]&#x60;;
+}
+
+/**
+ * Turn an int into a array selector : [N].
+ * @param index value.s
+ */
+export function wrapAsIndexSelector(index: string): string {
+    return &#x60;(${index})&#x60;;
+}
+/**
+ * Remove surrounding brackets or curly braces.
+ * [ text ] or { text } / text
+ * @param text input text.
+ */
+export function extractContent(text: string): string {
+    const from &#x3D; 1;
+    const to &#x3D; text.length - 1;
+    return text.substring(from, to).trim();
+}
+
+/**
+ * Take one or several selector values as input.s and return a selector statement
+ * @param &#x27;Xxx&#x27; or 12 or [&#x27;Xxx&#x27;, 1.23]
+ * @returns Xxx or #12 or Xxx,##1.23
+ */
+export function encodeSelector(value: string | number | (string | number)[]): string {
+    return Array.isArray(value)
+        ? value.map((s) &#x3D;&gt; _encodeOneSelectorValue(s)).join(KEYVALUEPAIR_SEPARATOR)
+        : _encodeOneSelectorValue(value);
+}
+/**
+ * Take a selector statement as input and return one or several values that matches the statement
+ * @param string as &quot;Xxx&quot; or &quot;Xxx,#12&quot; or &quot;Xxx,##1.23&quot;
+ * @returns Xxx or  [Xxx, 12] or [Xxx, 1.23]
+ */
+export function decodeIndexValues(stringValue: string): string | number | (string | number)[] {
+    if (isIndexSelector(stringValue)) {
+        stringValue &#x3D; extractContent(stringValue);
+    }
+
+    const values &#x3D; stringValue.split(KEYVALUEPAIR_SEPARATOR).map((s) &#x3D;&gt; decodeOneSelectorValue(s.trim()));
+    return values.length &#x3D;&#x3D;&#x3D; 1 ? values[0]! : values;
+}
+/**
+ * Take an object as input and return its string layoutindex values 
+ * @param any {p1:&quot;Xxx&quot;, p2:5}
+ * @returns (Xxx,#5)
+ */
+export function keyValuesAsIndexSelector(value: any): string {
+    if (Array.isArray(value)) {
+        return wrapAsIndexSelector(
+            value.map((s) &#x3D;&gt; _encodeOneSelectorValue(s as string | number))
+                .join(KEYVALUEPAIR_SEPARATOR)
+        );
+
+    } else if (isJsObject(value)) {
+        return wrapAsIndexSelector(
+            Object.values(value)
+            .map((s) &#x3D;&gt; _encodeOneSelectorValue(s as string | number))
+                .join(KEYVALUEPAIR_SEPARATOR)
+        );
+    } else {
+        return wrapAsIndexSelector(_encodeOneSelectorValue(value as string | number));
+    }
+}
+
+export function decodeKeyValues(pathPart: string): object {
+    if (isTextObject(pathPart)) {
+        pathPart &#x3D; extractContent(pathPart);
+    }
+    if (isBlank(pathPart)) {
+        return {};
+    }
+    return pathPart
+        .split(KEYVALUEPAIR_SEPARATOR)
+        .map((s) &#x3D;&gt; {
+            const tmp &#x3D; s.split(KEYVALUE_SEPARATOR);
+            return [tmp[0]!.trim(), decodeOneSelectorValue(tmp[1]!.trim())];
+        })
+        .reduce((r, v) &#x3D;&gt; {
+            r[v[0]!] &#x3D; v[1];
+            return r;
+        }, {} as any);
+}
+
+
+/**
+ * Turn path part into qualified definition { key: enum qualification, part: value }
+ * @param part input part definition
+ */
+function _qualifyPart(part: string): SelectorDef {
+    let result: SelectorDef;
+    if (part &#x3D;&#x3D;&#x3D; PATH_ROOT) {
+        result &#x3D; {type: SelectorTypes.Root, value: part, text: part};
+    } else if (part &#x3D;&#x3D;&#x3D; PATH_PARENT) {
+        result &#x3D; {type: SelectorTypes.ToParent, value: part, text: part};
+    } else if (part &#x3D;&#x3D;&#x3D; PATH_LOCAL) {
+        result &#x3D; {type: SelectorTypes.Local, value: part, text: part};
+    } else if (isTextArray(part)) {
+        result &#x3D; {
+            type: SelectorTypes.ArrayIndexOf,
+            value: Number.parseInt(extractContent(part)),
+            text: part
+        };
+    } else if (isIndexSelector(part)) {
+        result &#x3D; {
+            type: SelectorTypes.ArrayIndexValues,
+            value: decodeIndexValues(part),
+            text: part
+        };
+    } else if (isTextObject(part)) {
+        result &#x3D; {
+            type: SelectorTypes.ArrayIndexObject,
+            value: decodeKeyValues(part),
+            text: part
+        };
+    } else {
+        result &#x3D; {type: SelectorTypes.Property, value: part, text: part};
+    }
+    return result;
+}
+
+/**
+ * Join part with PATH_NEXT when more then 1.
+ * @param source array of string part
+ */
+export function toPath(source: string[]): string {
+    switch (source.length) {
+        case 0:
+            return PATH_LOCAL;
+        case 1:
+            return source[0]!;
+        default:
+            return source[0]!.endsWith(source[1]!) ? source[0]! : source[0]! + PATH_NEXT + source[1]!;
+    }
+}
+
+/**
+ * Test an object against arrayselector.
+ * @param instance object to test
+ * @param selector key definition: {&quot;id&quot;:&quot;Xxx&quot;&quot;} or {&quot;@&gt;id&quot;:&quot;Xxx&quot;}
+ */
+export function isMatchingIndexObj(instance: any, selector: any): boolean {
+    let matching &#x3D; false;
+    for (const key in selector) {
+        if (selector.hasOwnProperty(key)) {
+            if (key.startsWith(PATH_LOCAL)) {
+                const val &#x3D; readPath(instance, key);
+                matching &#x3D; val &#x3D;&#x3D;&#x3D; selector[key];
+            } else if (instance.hasOwnProperty(key)) {
+                matching &#x3D; instance[key] &#x3D;&#x3D;&#x3D; selector[key];
+            }
+            if (!matching) {
+                return false;
+            }
+        }
+    }
+    return matching;
+}
+
+/**
+ * Test an object against arrayselector.
+ * @param instance object to test
+ * @param selector key definition: {&quot;id&quot;:&quot;Xxx&quot;&quot;} or {&quot;@&gt;id&quot;:&quot;Xxx&quot;}
+ */
+export function isMatchingSelector(instance: any, selector: string): boolean {
+    let matching &#x3D; false;
+    const path &#x3D; MetadataHelper.getTypeInfo(instance)?.path;
+    if (!isStringAssigned(path)) {
+        return false;
+    }
+    return path!.endsWith(PATH_NEXT + selector);  
+}
+
+function _isParenteseOpenningOnly(value: string): boolean {
+    return isStringAssigned(value) &amp;&amp; value.startsWith(&#x27;(&#x27;) &amp;&amp; !value.endsWith(&#x27;)&#x27;);
+}
+function _isParenteseClosingOnly(value: string): boolean {
+    return isStringAssigned(value) &amp;&amp; value.endsWith(&#x27;)&#x27;) &amp;&amp; !value.startsWith(&#x27;(&#x27;);
+}
+
+/**
+ * split a path in an array of part.
+ * 
+ * @remark
+ * A path is septarated by &#x27;&gt;&#x27; but if a part starts with &#x27;(&#x27; 
+ * and ends with &#x27;)&#x27; it is considered as a single part even if it contains &#x27;&gt;&#x27;.
+ * @param path of an element
+ * @returns path from its parent.
+ */
+export function splitPath(path: string): string[] {
+    const pathParts &#x3D; [];
+    let inParentese &#x3D; false;
+    let parenteseCount &#x3D; 0;
+    let currentPart &#x3D; &#x27;&#x27;;
+    const parts &#x3D; path.split(new RegExp(PATH_NEXT, &#x27;g&#x27;));
+    for (const part of parts) {
+        if( inParentese) {
+            if (_isParenteseOpenningOnly(part)) {
+                currentPart &#x3D; part;
+                parenteseCount++;
+                inParentese &#x3D; true;
+            } else if (_isParenteseClosingOnly(part) ) {
+                parenteseCount -&#x3D; countChar(part, &#x27;)&#x27;);
+                inParentese &#x3D; parenteseCount &gt; 0;
+            } else if( isIndexSelector(part)) {
+                currentPart +&#x3D; PATH_NEXT + part;
+                parenteseCount -&#x3D; countChar(part, &#x27;)&#x27;)-countChar(part, &#x27;(&#x27;);
+                inParentese &#x3D; parenteseCount &gt; 0;
+            }else {
+                currentPart +&#x3D; PATH_NEXT + part;
+            }
+        } else {
+            if (_isParenteseOpenningOnly(part)) {
+                currentPart &#x3D; part;
+                parenteseCount++;
+                inParentese &#x3D; true;
+            } else {
+                currentPart &#x3D; part;
+            }
+        }
+      
+         if (!inParentese) {
+            pathParts.push( currentPart)
+            currentPart &#x3D; &#x27;&#x27;;
+        }
+    }
+    return pathParts;
+}
+/**
+ * return the path from your parent.
+ * 
+ * @remark
+ * A path is septarated by &#x27;&gt;&#x27; but if a part starts with &#x27;(&#x27; 
+ * and ends with &#x27;)&#x27; it is considered as a single part even if it contains &#x27;&gt;&#x27;.
+ * 
+ * @example
+ * a&gt;b&gt;c&gt;($&gt;e&gt;f)
+ * 
+ * @remark
+ * If you are the root of the hierarchy the return path is an empty string.
+ * 
+ * @param path of an element
+ * @returns path from its parent.
+ */
+export function pathFromParent(path: string): string {
+    const parts &#x3D; splitPath(path);
+    const parentPath &#x3D; parts[parts.length - 1]! ;
+    return parentPath &#x3D;&#x3D;&#x3D; PATH_ROOT ? &#x27;&#x27; : parentPath;
+}
+
+export function parsePart(path: string): SelectorDef[] {
+    const parts &#x3D; splitPath(path);
+    const keyparts &#x3D; parts.map((s) &#x3D;&gt; _qualifyPart(s));
+    return keyparts;
+}
+
+function _pathNeedPrepare(pathParts: SelectorDef[]): boolean {
+    const predicate &#x3D; (p: SelectorDef): boolean &#x3D;&gt;
+        p.type &#x3D;&#x3D;&#x3D; SelectorTypes.ArrayIndexValues ||
+        p.type &#x3D;&#x3D;&#x3D; SelectorTypes.ArrayIndexObject ||
+        p.type &#x3D;&#x3D;&#x3D; SelectorTypes.ToParent;
+    return pathParts.findIndex(predicate) &gt; -1;
+}
+
+function _read(current: any, selectorDefs: SelectorDef[]): any {
+    let selectedElement &#x3D; current;
+    if (_pathNeedPrepare(selectorDefs) &amp;&amp; MetadataHelper.isNotPrepared(current)) {
+        throw new Error(&#x27;target should be prepared&#x27;);
+    }
+    for (let index &#x3D; 0; index &lt; selectorDefs.length; index++) {
+        const selectorDef &#x3D; selectorDefs[index]!;
+        switch (selectorDef.type) {
+            case SelectorTypes.Property:
+            case SelectorTypes.ArrayIndexOf:
+                selectedElement &#x3D; isFunction(selectedElement.get)
+                    ? selectedElement.get(selectorDef.value)
+                    : selectedElement[selectorDef.value];
+                break;
+
+            case SelectorTypes.ToParent:
+                selectedElement &#x3D; isFunction(selectedElement.parent)
+                    ? selectedElement.parent()
+                    : MetadataHelper.getTypeInfo(selectedElement)!.parent.obj;
+                break;
+
+            case SelectorTypes.ArrayIndexValues:
+                const array &#x3D; selectedElement as any[];
+                const selector &#x3D; selectorDef.value;
+                selectedElement &#x3D; undefined;
+                if (array.length &gt; 0) {
+                    const dataInfo &#x3D; MetadataHelper.getTypeInfoWithCheck(array[0]);
+                    if (!dataInfo) {
+                        const path &#x3D; selectorDefs.map((p) &#x3D;&gt; p.value).join(PATH_NEXT);
+                        throw new Error(&#x60;${path} is not prepared &#x60;);
+                    }
+
+                    const otype &#x3D; dataInfo.type as OType;
+                    const idObj &#x3D; otype.buildIndexObjFromSelectorValue(decodeIndexValues(selector));
+
+                    for (const item of array) {
+                        if (isMatchingIndexObj(item, idObj)) {
+                            selectedElement &#x3D; item;
+                            break;
+                        }
+                    }
+                }
+                break;
+            case SelectorTypes.ArrayIndexObject:
+                const array2 &#x3D; selectedElement as any[];
+                const idObj &#x3D; selectorDef.value;
+                selectedElement &#x3D; undefined;
+                if (array2.length &gt; 0 &amp;&amp; idObj) {
+                    for (const item of array2) {
+                        if (isMatchingIndexObj(item, idObj)) {
+                            selectedElement &#x3D; item;
+                            break;
+                        }
+                    }
+                }
+                break;
+
+            case SelectorTypes.Local:
+                selectedElement &#x3D; current;
+                break;
+            case SelectorTypes.Root:
+                selectedElement &#x3D; isFunction(selectedElement.$root)
+                    ? selectedElement.$root()
+                    : MetadataHelper.getTypeInfo(selectedElement)!.root().obj;
+                break;
+
+            default:
+                selectedElement &#x3D; selectedElement;
+                break;
+        }
+        if (selectedElement &#x3D;&#x3D;&#x3D; undefined) {
+            return undefined;
+        }
+    }
+    return selectedElement;
+}
+
+function _write(current: any, pathParts: SelectorDef[], value: any): void {
+    let result &#x3D; current;
+    if (_pathNeedPrepare(pathParts) &amp;&amp; MetadataHelper.isNotPrepared(current)) {
+        throw new Error(&#x27;target should be prepared&#x27;);
+    }
+    for (let index &#x3D; 0; index &lt; pathParts.length; index++) {
+        const segmentPart &#x3D; pathParts[index]!;
+        switch (segmentPart.type) {
+            case SelectorTypes.Property:
+            case SelectorTypes.ArrayIndexOf:
+                if (index &#x3D;&#x3D;&#x3D; pathParts.length - 1) {
+                    isFunction(result.set) ? result.set(value) : (result[segmentPart.value] &#x3D; value);
+                }
+                result &#x3D; isFunction(result.get)
+                    ? result.get(segmentPart.value)
+                    : result[segmentPart.value];
+
+                break;
+
+            case SelectorTypes.ToParent:
+                result &#x3D; result.parent();
+                break;
+
+            case SelectorTypes.ArrayIndexObject:
+                const array &#x3D; result as any[];
+                const selector &#x3D; segmentPart.value;
+                if (array.length &gt; 0) {
+                    const dataInfo &#x3D; MetadataHelper.getTypeInfoWithCheck(array[0]);
+                    let idObj;
+                    if (dataInfo) {
+                        const otype &#x3D; dataInfo.type as OType;
+                        idObj &#x3D; otype.buildIndexObjFromSelectorValue(selector);
+                    } else {
+                        const path &#x3D; pathParts.map((p) &#x3D;&gt; p.value).join(PATH_NEXT);
+                        throw new Error(&#x60;${path} is not prepared &#x60;);
+                    }
+                    for (let idx &#x3D; 0; idx &lt; array.length; idx++) {
+                        const element &#x3D; array[idx];
+                        if (isMatchingIndexObj(element, idObj)) {
+                            result &#x3D; element;
+                            break;
+                        }
+                    }
+                } else {
+                    return undefined;
+                }
+                break;
+
+            case SelectorTypes.Local:
+                result &#x3D; current;
+                break;
+            case SelectorTypes.Root:
+                result &#x3D; isFunction(result.$root)
+                    ? result.$root()
+                    : MetadataHelper.getTypeInfo(result)!.root().obj;
+                break;
+
+            default:
+                result &#x3D; result;
+                break;
+        }
+        if (result &#x3D;&#x3D;&#x3D; undefined) {
+            return undefined;
+        }
+    }
+}
+/**
+ * Retrieve an intance or a property in a model hiearchy
+ * 
+ * A JOE Path is a list of &#x27;part&#x27; having &#x27;&gt;&#x27; as separator
+ * @examples &#x27;$&gt;property&gt;colection&gt;(id-value)&#x27;
+ *  
+ * The first &#x27;part&#x27; of a JOE PAth is either &#x27;$&#x27; (hierarchy root) or &#x27;.&#x27; current reference.
+ * 
+ * A &#x27;part&#x27; is by default property name except when :
+ * 
+ * When a &#x27;part&quot; starts by &#x27;(&#x27; or &#x27;[&#x27; it supposed that your navigation along the hierarchy model brought you to an array.
+ * 
+ * &#x27;[2]&#x27; means that you whant to retrieve the third item of the array
+ * 
+ * &#x27;(val) means that you whant to retrieve the item of the array having &#x27;val&#x27; as index value.
+ *  
+ * @param current indicates on which element the path is applied 
+ * @param pathStmt path statement
+ * @param forgetLast (optional) by setting 1 you retrieve the parent of an json instance 
+ * @returns 
+ */
+export function readPath&lt;T &#x3D; any&gt;(current: any, pathStmt: string, forgetLast: number &#x3D; 0): T | undefined {
+    if (!isStringAssigned(pathStmt) ) {
+        return undefined;
+    }
+    if (current &#x3D;&#x3D;&#x3D; undefined || !isStringAssigned(pathStmt) || (isArray(current) &amp;&amp; current.length &#x3D;&#x3D; 0)) {
+        return undefined;
+    }
+
+    let pathParts: SelectorDef[] &#x3D; parsePart(pathStmt);
+    if (forgetLast) {
+        pathParts &#x3D; pathParts.slice(0, pathParts.length - forgetLast);
+    }
+    const result &#x3D; _read(current, pathParts);
+    return result;
+}
+
+export function writePath(current: any, pathStmt: string, value: any) {
+    const pathParts: SelectorDef[] &#x3D; parsePart(pathStmt);
+    const result &#x3D; _write(current, pathParts, value);
+}
+
+/**
+ * This function is used to build a {@link types#ChangeItem | Change Item},
+ * 
+ * The input path is relative to a change operation
+ * 
+ * It turns a path into two values:
+ * 
+ * - The path to the last intance
+ * - The selector or property relative to this last intance
+ * 
+ * @example
+ *  &#x27;$&gt;p1&gt;list&gt;(5) 
+ *   returns [&#x27;$&gt;p1&gt;list&#x27;, &#x27;(5)&#x27;] 
+ * @param path to decompose
+ * @returns  tuple of [&#x27;path to last intance&#x27;, &#x27;selector/property relative to the &#x27;]
+ */
+export function pathAsChangeTuple(path: string): [string, string] {
+    const pathParts: SelectorDef[] &#x3D; parsePart(path);
+    const isRoot &#x3D; pathParts.length &#x3D;&#x3D;&#x3D; 1;
+    const relativePath &#x3D; isRoot
+        ? pathParts[0]!.text
+        : pathParts
+            .slice(0, pathParts.length - 1)
+            .map((p) &#x3D;&gt; p.text)
+            .join(PATH_NEXT);
+    const selector &#x3D; isRoot ? &#x27;&#x27; : pathParts[pathParts.length - 1]!.text;
+    return [relativePath, selector];
+}
+
+export function getParentProperty(pathStmt: string): string {
+    if (pathStmt &#x3D;&#x3D;&#x3D; undefined) {
+        return PATH_ROOT;
+    }
+    const pathParts: SelectorDef[] &#x3D; parsePart(pathStmt);
+    return pathParts.length &gt; 1 ? pathParts[pathParts.length - 1]!.value : PATH_ROOT;
+}
+
+export function isPath(path: string): boolean {
+    return (
+        (path || &#x27;&#x27;).startsWith(PATH_ROOT) ||
+        path.startsWith(PATH_NEXT) ||
+        path.startsWith(PATH_LOCAL) ||
+        path.startsWith(PATH_PARENT)
+    );
+}
+
+export function normalizePath(path: string): string {
+    return isPath(path)
+        ? path.startsWith(PATH_NEXT)
+            ? PATH_LOCAL + path
+            : path
+        : PATH_LOCAL + PATH_NEXT + path;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'SelectorDef.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

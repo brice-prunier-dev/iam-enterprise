@@ -1,0 +1,1497 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >ValidationHandler</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/core/validations.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p> Class to manipulate a view error state.
+ A view error state is a dictionnary that will have an entry on each view property that doesn&#39;t comply to its type definition.
+ The value &#39;<em>&#39; is used as global error regarding to the view type definition.
+ Example: if a Setview<T> is empty and has a minLength constraint set to 1 its error state
+ will include an error on &#39;</em>&#39; to indicate that it should get one item in the list.</p>
+
+            </p>
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/ValidationState.html" target="_self" >ValidationState</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errors" >errors</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#clear" >clear</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#debug" >debug</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#elementErrorsCount" >elementErrorsCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorCount" >errorCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isValid" >isValid</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#merge" >merge</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#setItemErrors" >setItemErrors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#setPropertyValidation" >setPropertyValidation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#withCoreError" >withCoreError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#withError" >withError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#writeError" >writeError</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(source?: <a href="../undefineds/JsonObj.html" target="_self">JsonObj</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/core/validations.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>source</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#JsonObj" target="_self" >JsonObj</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errors"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errors</b></span>
+                        <a href="#errors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#JsonObj" target="_self" >JsonObj</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/lib/core/validations.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clear"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>clear</b></span>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clear()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/lib/core/validations.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="debug"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>debug</b></span>
+                        <a href="#debug"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>debug(context: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isRoot: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/lib/core/validations.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>context</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>isRoot</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementErrorsCount"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>elementErrorsCount</b></span>
+                        <a href="#elementErrorsCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>elementErrorsCount()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/lib/core/validations.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorCount"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorCount</b></span>
+                        <a href="#errorCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>errorCount(scope?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/lib/core/validations.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>scope</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValid"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isValid</b></span>
+                        <a href="#isValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isValid(property?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/lib/core/validations.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>property</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="merge"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>merge</b></span>
+                        <a href="#merge"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>merge(validation?: <a href="../classes/ValidationHandler.html" target="_self">ValidationHandler</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/lib/core/validations.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>validation</td>
+                                            <td>
+                                                            <code><a href="../classes/ValidationHandler.html" target="_self" >ValidationHandler</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setItemErrors"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>setItemErrors</b></span>
+                        <a href="#setItemErrors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setItemErrors(propName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, error: JsonObj | undefined)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/lib/core/validations.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>propName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                        <code>JsonObj | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setPropertyValidation"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>setPropertyValidation</b></span>
+                        <a href="#setPropertyValidation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setPropertyValidation(propertyName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, propertyValidationState: <a href="../interfaces/ValidationState.html" target="_self">ValidationState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/lib/core/validations.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>propertyName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>propertyValidationState</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ValidationState.html" target="_self" >ValidationState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="withCoreError"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>withCoreError</b></span>
+                        <a href="#withCoreError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>withCoreError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/lib/core/validations.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="withError"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>withError</b></span>
+                        <a href="#withError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>withError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/lib/core/validations.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeError"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>writeError</b></span>
+                        <a href="#writeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeError(errorName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, errorArgs: JsonObj | undefined)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/lib/core/validations.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>errorName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>errorArgs</td>
+                                            <td>
+                                                        <code>JsonObj | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {JoeLogger} from &#x27;./loggers&#x27;;
+import {isBlank, isDataAssigned} from &#x27;./types-tester&#x27;;
+import {JsonObj, ValidationState} from &#x27;./types&#x27;;
+import { PATH_LOCAL, PATH_NEXT, PATH_ROOT } from &#x27;./constants&#x27;;
+
+/**
+ * Generic error for required field.
+ */
+export const REQUIRED_ERROR: JsonObj &#x3D; {_required: {required: true}};
+/**
+ * Fake error displayed when an asyncronous validation is running.
+ * Setting ASYNCRULE_RUNNING_ERROR makes the validation state invalid.
+ * It force UI command to wait for the end of the validation.
+ */
+export const ASYNCRULE_RUNNING_ERROR: JsonObj &#x3D; {asyncrule: {running: true}};
+/**
+ *  Class to manipulate a view error state.
+ *  A view error state is a dictionnary that will have an entry on each view property that doesn&#x27;t comply to its type definition.
+ *  The value &#x27;_&#x27; is used as global error regarding to the view type definition.
+ *  Example: if a Setview&lt;T&gt; is empty and has a minLength constraint set to 1 its error state
+ *  will include an error on &#x27;_&#x27; to indicate that it should get one item in the list.
+ */
+export class ValidationHandler implements ValidationState {
+    public errors: JsonObj;
+
+    constructor(source?: JsonObj) {
+        this.errors &#x3D; source || {};
+    }
+
+    public clear() {
+        if (this.withError()) {
+            Object.keys(this.errors).forEach((prop) &#x3D;&gt; delete this.errors[prop]);
+        }
+    }
+
+    public debug(context: string, isRoot: boolean) {
+        const scope &#x3D; context || &#x27;*&#x27;;
+        if (scope &#x3D;&#x3D;&#x3D; &#x27;*&#x27;) {
+            if (this.withError()) {
+                JoeLogger.group(&#x27;MODEL VALIDATION: KO&#x27;);
+                JoeLogger.info(this.errors);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;MODEL VALIDATION: OK&#x27;);
+            }
+        } else {
+            if (this.errors[context]) {
+                JoeLogger.group(&#x27;PROPERTY VALIDATION: &#x27; + context + &#x27; : KO&#x27;);
+                JoeLogger.info(this.errors[context] as object);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;PROPERTY VALIDATION:&#x27; + context + &#x27; : OK&#x27;);
+            }
+        }
+    }
+
+    public elementErrorsCount(): number {
+        return Object.keys(this.errors).filter((s) &#x3D;&gt; isDataAssigned(this.errors[s])).length;
+    }
+
+    public errorCount(scope?: any): number {
+        return Object.keys(this.errors).filter((s) &#x3D;&gt; isDataAssigned(this.errors[s])).length;
+    }
+
+    public merge(validation?: ValidationHandler) {
+        const withError &#x3D; validation !&#x3D;&#x3D; undefined &amp;&amp; validation.withError;
+        if (withError) {
+            Object.keys(validation.errors!).forEach((p) &#x3D;&gt; (this.errors[p] &#x3D; validation.errors[p]));
+        }
+    }
+
+    public setItemErrors(propName: string, error: JsonObj | undefined): void {
+        const withError &#x3D; isDataAssigned(error);
+        if (withError) {
+            this.errors[propName] &#x3D; error!;
+        } else if (this.errors[propName]) {
+            delete this.errors[propName];
+        }
+    }
+
+    public setPropertyValidation(propertyName: string, propertyValidationState: ValidationState) {
+        if (propertyValidationState.withError()) {
+            this.errors[propertyName] &#x3D; propertyValidationState.errors;
+        } else if (this.errors[propertyName]) {
+            delete this.errors[propertyName];
+        }
+    }
+
+    public withCoreError(): boolean {
+        return (
+            Object.keys(this.errors).filter(
+                (s) &#x3D;&gt; !s.startsWith(&#x27;_&#x27;) &amp;&amp; isDataAssigned(this.errors[s])
+            ).length &gt; 0
+        );
+    }
+
+    public withError(): boolean {
+        return this.errorCount() &gt; 0;
+    }
+
+    public isValid(property?: string): boolean {
+
+        return isBlank(property)
+            ? !this.withError()
+            : !isDataAssigned(this.errors[property!]);
+    }
+    
+    public writeError(errorName: string, errorArgs: JsonObj | undefined): boolean {
+        const withError &#x3D; errorArgs !&#x3D;&#x3D; undefined;
+        if (isDataAssigned(errorArgs)) {
+            this.errors[errorName] &#x3D; errorArgs!;
+        } else if (this.errors[errorName]) {
+            delete this.errors[errorName];
+        }
+        return withError;
+    }
+}
+
+export type ElementErrorResults&lt;T&gt; &#x3D; {[P in keyof T]?: JsonObj | undefined} &amp; {
+    _?: JsonObj | undefined;
+} &amp; JsonObj;
+
+export class ElementValidationState&lt;T&gt; implements ValidationState {
+    public errors: ElementErrorResults&lt;T&gt;;
+    public initialized &#x3D; false;
+
+    constructor(source?: ElementErrorResults&lt;T&gt;) {
+        this.errors &#x3D; source || {};
+    }
+
+    public checking(error: JsonObj | undefined) {
+        return error &#x3D;&#x3D;&#x3D; ASYNCRULE_RUNNING_ERROR;
+    }
+
+    public clear() {
+        if (this.withError()) {
+            const errors &#x3D; this.errors as any;
+            const props &#x3D; Object.keys(errors);
+            for (const prop of props) {
+                delete errors[prop];
+            }
+        }
+        this.initialized &#x3D; false;
+    }
+
+    public debug(context: string, isRoot: boolean) {
+        const scope &#x3D; context || &#x27;*&#x27;;
+        if (scope &#x3D;&#x3D;&#x3D; &#x27;*&#x27;) {
+            if (this.withError()) {
+                JoeLogger.group(&#x27;MODEL VALIDATION: KO&#x27;);
+                JoeLogger.info(this.errors);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;MODEL VALIDATION: OK&#x27;);
+            }
+        } else {
+            if (this.errors[context]) {
+                JoeLogger.group(&#x27;VALIDATION &#x27; + context + &#x27; : KO&#x27;);
+                JoeLogger.info(this.errors[context] as object);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;VALIDATION &#x27; + context + &#x27; : OK&#x27;);
+            }
+        }
+    }
+
+    public matchesRequiredConstraint(
+        propertyName: keyof T | &#x27;_&#x27;,
+        required: boolean,
+        value: any
+    ): boolean {
+        const unassigned &#x3D; isBlank(value);
+        const errors &#x3D; this.errors as any;
+        if (required &amp;&amp; unassigned) {
+            errors[propertyName] &#x3D; REQUIRED_ERROR;
+        } else if (unassigned || this.errors[propertyName] &#x3D;&#x3D;&#x3D; REQUIRED_ERROR) {
+            delete errors[propertyName];
+        }
+
+        return !unassigned;
+    }
+
+    public setItemErrors(propName: string, error: JsonObj | undefined): void {
+        const withError &#x3D; isDataAssigned(error);
+        if (withError) {
+            (this.errors as JsonObj)[propName] &#x3D; error!;
+        } else if ((this.errors as JsonObj)[propName]) {
+            delete (this.errors as JsonObj)[propName];
+        }
+    }
+
+    public unassigned(): boolean {
+        return (
+            this.errors &#x3D;&#x3D;&#x3D; undefined ||
+            (this.errors !&#x3D;&#x3D; undefined &amp;&amp;
+                Object.values(this.errors).some((value) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; REQUIRED_ERROR))
+        );
+    }
+
+    public withCoreError(): boolean {
+        if (this.errors !&#x3D;&#x3D; undefined) {
+            const values &#x3D; Object.values(this.errors);
+            for (const value of values) {
+                if (value !&#x3D;&#x3D; undefined) {
+                    if (
+                        Object.keys(value as JsonObj).filter(
+                            (s) &#x3D;&gt; !s.startsWith(&#x27;_&#x27;) &amp;&amp; isDataAssigned((value as any)[s])
+                        ).length &gt; 0
+                    ) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public matchPrerequisits(prerequisites?: string[]): boolean {
+        if (!this.initialized) {
+            return false;
+        }
+        if (prerequisites !&#x3D;&#x3D; undefined) {
+            for (const prerequisit of prerequisites) {
+                
+                if( isBlank(prerequisit)) continue;
+
+                var propertyParts &#x3D; prerequisit.split(PATH_NEXT).filter((p) &#x3D;&gt; p !&#x3D; PATH_LOCAL &amp;&amp; p !&#x3D; PATH_ROOT );
+                const readPath &#x3D; (obj: JsonObj, prop: string) &#x3D;&gt; (obj ?? {})[prop] as JsonObj | undefined;
+                if (this.withError() &amp;&amp; propertyParts.length &gt; 0 ) {
+                    var obj &#x3D; this.errors as JsonObj | undefined;
+                    for (const part of propertyParts) {
+                        obj &#x3D; readPath(obj!, part);
+                        if (!isDataAssigned(obj)) {
+                            return true;
+                        }
+                    }
+                    if (isDataAssigned(obj)) {
+                        return false;
+                    }
+                }
+                
+            }
+        }
+        return true;
+    }
+
+    public withError(): boolean {
+        return isDataAssigned(this.errors);
+    }
+
+    public isValid(property?: keyof T): boolean {
+
+        return isBlank(property)
+            ? !this.withError()
+            : !isDataAssigned(this.errors[property!]);
+    }
+    
+    
+}
+
+/**
+ * ValidationState implementation for an Array
+ * * Array specific constraint as min/mas Items count are set on &#x27;_&#x27; property name.
+ * 
+ * Invalid child item will be set:
+ * * on a position index &#x27;[x]&#x27; if child is scalar or has no index,
+ * * on **JOE** Json path key index &#x27;(Xxx)&#x27; when the child has an index.
+ */
+export class ListValidationState implements ValidationState {
+    public static FROM(source: JsonObj): ListValidationState {
+        const result &#x3D; new ListValidationState();
+        if (source) {
+            result.errors &#x3D; source;
+        }
+        return result;
+    }
+
+    public errors: JsonObj;
+    public initialized &#x3D; false;
+
+    constructor() {
+        this.errors &#x3D; {};
+    }
+
+    public clear() {
+        this.clearListError();
+        this.initialized &#x3D; false;
+    }
+
+    public clearListError(all: boolean &#x3D; false): void {
+        const errors &#x3D; this.errors as any;
+        if (all) {
+            if (this.withError()) {
+                const props &#x3D; Object.keys(errors);
+                for (const prop in props) {
+                    delete errors[prop];
+                }
+            }
+        } else if (this.errors?._) {
+            errors._ &#x3D; undefined;
+        }
+    }
+
+    public debug(context: string, isRoot: boolean) {
+        const scope &#x3D; context || &#x27;*&#x27;;
+        if (scope &#x3D;&#x3D;&#x3D; &#x27;*&#x27;) {
+            if (this.withError()) {
+                JoeLogger.group(&#x27;MODEL VALIDATION KO&#x27;);
+                JoeLogger.info(this.errors);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;MODEL VALIDATION OK&#x27;);
+            }
+        } else {
+            if (this.errors[context]) {
+                JoeLogger.group(&#x27;PROPERTY VALIDATION: &#x27; + context + &#x27; : KO&#x27;);
+                JoeLogger.info(this.errors[context] as object);
+                JoeLogger.endgroup();
+            } else {
+                JoeLogger.debug(&#x27;PROPERTY VALIDATION: &#x27; + context + &#x27; : OK&#x27;);
+            }
+        }
+    }
+
+    public getItemState(propName: string): ValidationHandler {
+        return new ValidationHandler(this.errors[propName] as JsonObj | undefined);
+    }
+
+    public merge(childrenErrors: JsonObj): this {
+        if (isDataAssigned(childrenErrors)) {
+            const errors &#x3D; this.errors as any;
+            const selfExtra &#x3D; childrenErrors._ as any;
+            if (isDataAssigned(selfExtra)) {
+                this.errors._ &#x3D; this.withError() ? {...errors._, ...selfExtra} : selfExtra;
+                delete childrenErrors._;
+            }
+            if (isDataAssigned(childrenErrors)) {
+                this.errors &#x3D; this.withError()
+                    ? {...this.errors, ...childrenErrors}
+                    : {...childrenErrors};
+            }
+        }
+        return this;
+    }
+
+    public result(): JsonObj | undefined {
+        return this.withError() ? this.errors : undefined;
+    }
+
+    public setItemError(propName: string, errorName: string, error: JsonObj | undefined): boolean {
+        const propError &#x3D; this.getItemState(propName);
+        propError.writeError(errorName, error);
+        return this.setItemState(propName, propError);
+    }
+
+    public setItemErrors(propName: string, error: JsonObj | undefined): void {
+        const withError &#x3D; isDataAssigned(error);
+        if (withError) {
+            this.errors[propName] &#x3D; error!;
+        } else if (this.errors[propName]) {
+            delete this.errors[propName];
+        }
+    }
+
+    public setItemState(propName: string, result?: ValidationState): boolean {
+        const withError &#x3D; result !&#x3D;&#x3D; undefined &amp;&amp; result.withError();
+        if (withError) {
+            this.errors[propName] &#x3D; result.errors;
+        } else {
+            delete this.errors[propName];
+        }
+        return withError;
+    }
+
+    public setPropertyValidation(propertyName: string, propertyErrors: ValidationState) {
+        this.setItemErrors(propertyName, propertyErrors.errors);
+    }
+
+    public withCoreError(): boolean {
+        return this.errors._ !&#x3D;&#x3D; undefined;
+    }
+
+    public withError(): boolean {
+        return isDataAssigned(this.errors);
+    }
+    
+    public isValid(property?: string): boolean {
+
+        return isBlank(property)
+            ? !this.withError()
+            : !isDataAssigned(this.errors[property!]);
+    }
+    
+    
+}
+
+export type ValidationFunc&lt;T&gt; &#x3D; (v: T) &#x3D;&gt; JsonObj | undefined;
+export type ValidationRule&lt;T&gt; &#x3D; {
+    prerequisits?: string | string[];
+    rule: ValidationFunc&lt;T&gt;;
+};
+export type AsyncValidationRule&lt;T&gt; &#x3D; (v: T) &#x3D;&gt; Promise&lt;JsonObj | undefined&gt;;
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidationHandler.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

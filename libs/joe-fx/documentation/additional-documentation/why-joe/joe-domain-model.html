@@ -1,0 +1,269 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>JOE Domain Model</h1>
+<p>A <code>Domain Model</code> is supposed to be an hierarchy of <code>View Element</code> describing a <code>Business Concept</code>.</p>
+<ul>
+<li><p>On simple case a <code>Domain Model</code> can rely on a single <code>View Element</code>.</p>
+</li>
+<li><p>The <code>Root Element</code> is either an Object or an Array or a Map.</p>
+</li>
+</ul>
+<p>Modeling <code>Domain Model</code> is a list of Type definitions relying on 3 declaration :</p>
+<p>1- the typescript Data interface,
+2- the Type Element relative to this interface</p>
+<ul>
+<li>It is just an instance of Type definition that is very close from a JsonSchemas,
+3- the Joe View class declaration.</li>
+</ul>
+<h2>Domain Model example</h2>
+<p><img src="../../additional-img/joe-domainmodel.png" alt="flow diagram" class="img-responsive"></p>
+<h2>Typescript code of Domain Model example</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import {IViewElement, ObjectDef, Objview, Setview, Tarray, Tobject} from &quot;joe-fx&quot;;
+import {t} from &quot;joe-types&quot;;
+
+/* ----------------------------------------------- 
+ *                PersonName (Domain Element)
+ * ----------------------------------------------- */
+
+export interface PersonNameData {
+    firstName: string;
+    middleName?: string;
+    lastName: string;
+}
+
+
+export const PersonNameDef: ObjectDef&lt;PersonNameData&gt; = {
+    type: &#39;object&#39;,
+    title: &#39;PersonName&#39;,
+    properties: {
+        firstName: t.string.name,
+        middleName: t.string.name,
+        lastName: t.string.name
+    },
+    required: [&#39;lastName&#39;, &#39;lastName&#39;],
+    index: {
+        id: [&#39;lastName&#39;, &#39;firstName&#39;],
+        sort: [&#39;lastName&#39;, &#39;firstName&#39;]
+    }
+};
+export const PersonNameType: Tobject&lt;PersonNameData&gt; = new Tobject&lt;PersonNameData&gt;(PersonNameDef);
+export const PersonNameListType: TArray&lt;PersonNameType&gt; = new Tarray&lt;PersonNameData&gt;(PersonNameType);
+
+export class PersonNameView extends Objview&lt;PersonNameData&gt; implements NameRefData {
+    declare firstName: string;
+    declare middleName: string;
+    declare lastName: string;
+    constructor(entity?: any, parent?: IViewElement, type?: Tobject&lt;X extends PersonNameData&gt; ) {
+        super(type ?? PersonNameType, entity, parent);
+    }
+}
+PersonNameType.viewctor = PersonNameView;
+
+/* ----------------------------------------------- 
+ *                PersonDoc (Domain Model)
+ * ----------------------------------------------- */
+export interface PersonDocData {
+    id: string;
+    revision: string;
+    name: PersonNameData;
+    children: PersonNameData[];
+}
+
+
+export const PersonDocDef: ObjectDef&lt;PersonDocData&gt; = {
+    type: &#39;object&#39;,
+    title: &#39;PersonDoc&#39;,
+    properties: {
+        id: t.string.id,
+        revision: t.string.word,
+        name: PersonNameType,
+    },
+    required: [&#39;id&#39;, &#39;revision&#39;, &#39;name&#39;],
+    index: {
+        id: &#39;id&#39;,
+        rev: &#39;revision&#39;
+        sort: [&#39;name&gt;lastName&#39;, &#39;name&gt;firstName&#39;]
+    }
+};
+export const PersonDocType: Tobject&lt;PersonDocData&gt; = new Tobject&lt;PersonDocData&gt;(PersonDocDef);
+
+export class PersonDocView extends Objview&lt;PersonDocData&gt; implements PersonDocData {
+    declare id: string;
+    declare revison: string;
+    declare name: PersonNameView;
+    declare children: Setview&lt;PersonNameView&gt;;
+    constructor(entity?: any, parent?: IViewElement, type?: Tobject&lt;X extends PersonNameData&gt; ) {
+        super(type ?? PersonDocType, entity, parent);
+    }
+}
+PersonNameType.viewctor = PersonDocView;</code></pre></div><p> <a href="./joe-types.html"><strong>Next...</strong></a></p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'joe-domain-model.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

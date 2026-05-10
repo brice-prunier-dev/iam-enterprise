@@ -1,0 +1,403 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>@Why JOE Framework</h1>
+<h2>Lexicon</h2>
+<blockquote>
+<p><code>JOE</code>: Javascript Object Element.</p>
+<p><code>JSON</code>: Javascript Object Notation.</p>
+<p><code>JSON Model</code>: Root Element of JSON data structure.</p>
+<p><code>JSON Element</code>: JSON data structure that compose a JSON Model (Ex. Any Child item).</p>
+<p><code>Domain Model</code> (aka <code>Model</code> as short name): <code>JSON Model</code> that defines a Business/Functional domain.</p>
+<p><code>Domain Element</code> (aka <code>Element</code> as short name): Entity that compose a <code>Domain Model</code>.</p>
+<p><code>Element Type</code>: Type definition of a <code>Domain Element</code>.</p>
+<p><code>Model Type</code>: it is the <code>Element Type</code> related to the root <code>Domain Element</code>.</p>
+<p><code>Change Operation</code>: Modification done on an <code>JSON Element</code>.</p>
+<p><code>ChangeSet</code>: Array of <code>Change Operation</code> that occured between two state.</p>
+</blockquote>
+<h2>JOE&#39;s origin</h2>
+<p>Typescript offers a clean way to enforce &quot;static type definition&quot; in javascript. With few Types defintions, an anonymous <code>JSON Model</code> can be turned into an a strongly typed data model.</p>
+<p>In a read only world &quot;static typing&quot; fullfils most of your needs, how ever a large majority of application needs to create, update or delete <code>Domain Models</code>...</p>
+<p>Having to edit a <code>Business Model</code> requires quite more than &quot;static typing&quot;:</p>
+<h3>Type Validation</h3>
+<ul>
+<li>At first sight you may think that Model&#39;s validation can be solved by Typescript <code>Static typing</code> (<em>Cf. property type &amp; required</em>). It is wrong ... it is quite more:<ul>
+<li>Examples:<ul>
+<li>A string property should be 2 chars <strong>min</strong> ,50 chars <strong>max</strong> and only <strong>alpha</strong> chars.</li>
+<li>A Date property should have today as default value,</li>
+<li>An Array property should get one item minimum,</li>
+<li>A Dictionary property should get at least a <code>&quot;main&quot;</code> key entry,</li>
+<li>A period property should enforce that <code>start date</code> is lower than <code>end date</code>,</li>
+<li>An Array property have its items count constraint by an other other property of the <code>Model</code>,</li>
+<li>A property name has to be unique in the database.
+-- ...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Those features can&#39;t be solved with <code>Static typing</code> you need a <code>Model Type</code> to handle all the features releated to <code>Domain Model</code> edition.</li>
+<li>Among those <strong>Validation</strong> is quite more than just validating a <code>Model</code>: <ul>
+<li>it should work on background code as on an <strong>User Interface</strong>,</li>
+<li>it sould be able to display a <code>Validation state</code> that matches UX as code expectations:<ul>
+<li>It should be fast:<ul>
+<li>Having to display an up to date <strong>Validation state</strong> on any character change requires <strong>Validation strategy</strong> that optimize your validation process to compute the stric minimun.</li>
+<li>Your <code>Validation state</code> should comply with your <code>Model hierarchy</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If you look closer to the <code>Validation Process</code> you realize you it relies on 3 stages process where stepping to the next level is only possible when the previous one is OK :<ol>
+<li><code>Type Model Validation</code> (Type definition enforcement),</li>
+<li><code>Business Model Validation</code> (Model logic enforcement),</li>
+<li><code>Repository Validation</code> (Contextual | External logic enforcement - Async).</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Entity Index</h3>
+<p>Being able to identify an <code>Model instance</code> is one of the first feature you face when you are dealing with <code>Domain Models</code>:</p>
+<ul>
+<li><code>Model identity</code> is a core requirement for back-office applications:</li>
+</ul>
+<p>Retrieving an <strong>instance</strong> in collection can&#39;t rely on a <strong>positional index</strong> because it is&#39;nt a reliable information:</p>
+<ul>
+<li>Any &#39;insert&#39;, &#39;delete&#39; or &#39;sort&#39; operations on a list invalidate all the <strong>positional index</strong> you may have spared,</li>
+</ul>
+<p><code>Element Type definition</code> should provide an <code>Index</code> section to specify on what property.ies are relevant to identify an <code>Element instance</code>  .</p>
+<h3>JSON pointer</h3>
+<p>Very few <code>Domain Model</code> are pure standalone Model. Most of them needs a reference.s to an external as on an internal <code>Domain Element</code>.</p>
+<ul>
+<li>Those references can target a root as a child element of an <code>Domain Model</code>.</li>
+<li>Having an <code>Domain Model</code> Id is not enougth you also need to specify what <code>Domain Element</code> you are targetting into this <code>Domain Model</code>.</li>
+</ul>
+<p>That requires a specific grammar that can define the <code>path</code> of an <code>Element</code> independantly of any <code>positional index</code> as [2] -&gt; second (or third) child item of an array.</p>
+<p><em>NB: JSON Path doesn&#39;t fullfil this last requirement.</em></p>
+<h3>ChangeSet</h3>
+<p>Editing a <code>Model</code> is a long and complex process:</p>
+<ul>
+<li>It can be done on an UI, by code or via a mix of the two,</li>
+<li>It implies two states of your <code>Domain Model</code>:<ul>
+<li>The original version ( -&gt; What JOE&#39;s calls source <code>JSON Element</code>),</li>
+<li>The one you display and edit ( -&gt; What JOE&#39;s calls a <code>View Element</code>).</li>
+</ul>
+</li>
+<li>The <code>View Element</code> enforce a <code>ChangeSet</code> that reflect all the changes,<ul>
+<li>To do so you can&#39;t rely on a &quot;Diff&quot; to get it<ul>
+<li>First it is too heavy to be applied on an UI where it can be compute many times .</li>
+<li>At last a blind &quot;Diff&quot; can produce errors:<ul>
+<li>On <code>Complex Model</code> changing an element of the hierarchy by an other is quite different from what a diff will produce...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code>ChangeSet</code> should never be committed before backend reconciliation have been completed, what ever is your `Model`` complexity.</li>
+<li>Saving a <code>Model</code> can either rely on the current JSON of the <code>Model</code> or on its changeset if you need to
+  master change&#39;s inpact.</li>
+</ul>
+<h3>Data Model Architecture</h3>
+<p>Handling <code>Domain Models</code> implies many class declarations.</p>
+<ul>
+<li>The <code>Static Type</code> definitions required by the <code>Model</code>,</li>
+<li>The <code>Element Types</code> that handle validation of each <code>Element</code>,</li>
+<li>The <code>View Element</code> that enforce the editing and business logic of each <code>Data Element</code>,</li>
+</ul>
+<p>The more complex is your <code>Model</code> the more declaration is required.
+The same goes for <code>Business Rules</code>:</p>
+<ul>
+<li>Being able to write the right <code>code</code> on the right class is a core requirement of <strong>SOLID</strong> programming.</li>
+<li>Having a <code>Domain Model</code> well build make your code simpler and more evolutive: all you need is provided by your <code>Model</code>.</li>
+</ul>
+<h3>ViewModel and Application Architecture</h3>
+<p>Designing <code>Domain Model</code> with an editiong logig is a first challenge but there is a second one:</p>
+<p>Managing the <code>Domain Model</code> <code>Life Cycle</code>:</p>
+<ul>
+<li>When should it be loaded,</li>
+<li>When should it be released,</li>
+<li>When has the <code>Model</code> changed...</li>
+</ul>
+<p>Despite all the custom code you can set on an <code>Element View</code> to enhance data manipulation you need a class that expose the <code>Domain Model</code> and enforce its <code>Life Cycle</code> logic.</p>
+<p>That class is called <code>ViewModel</code> (-&gt; Standard pattern) and its main roles are</p>
+<ul>
+<li><p>Properties:</p>
+<ul>
+<li><strong>View</strong> -&gt; Publish the root <code>View Element</code> of the <code>Domain Model</code> it manage,</li>
+<li><strong>ViewAsync</strong> -&gt; Publish a Promise on the root <code>View Element</code> of the <code>Domain Model</code>,</li>
+<li><strong>View Model identity</strong> -&gt; Expose an identity to retrieve it (a set of <em>key value</em>),</li>
+<li><strong>Dependencies</strong> -&gt; Declare required external <code>ViewModels</code> (Ex. Reference Table),</li>
+<li><strong>Loaded</strong> -&gt; Flag indicating that the <code>View</code> is loaded,</li>
+<li><strong>Running</strong> -&gt; Flag indicating a process is running,</li>
+<li><strong>Editing</strong> -&gt; Flag indicating the <strong>View</strong> touched,</li>
+<li><strong>Last Error</strong> -&gt; Error relative to the last action,
+...</li>
+</ul>
+</li>
+<li><p>Behaviours:</p>
+<ul>
+<li>Loading the <code>View</code></li>
+<li>Saving the <code>View</code></li>
+<li>All Custom Operations / Rules releated to the the <code>View</code></li>
+</ul>
+</li>
+</ul>
+<p>NB: The code that rules the <code>Life Cycle</code> of <code>Domain Model</code> should never be implemented in an UI Component neither a static service ( -&gt; the number of <code>ViewModel</code> instantiated at runtime depends upon Navigation).</p>
+<ul>
+<li>the role of an UI Page is to retrieve from <code>Navigation</code> all the <code>View Models</code> it needs to manage its UI bindings. It should never manipulate a <code>Domain Model</code> -&gt; it is the role of the <code>View Models</code>.</li>
+</ul>
+<p>An other asset of <code>ViewModel</code> framework is to be compliant with Modern UX as <code>Context Switching</code>:</p>
+<ul>
+<li><strong>Never</strong> an application should <code>block</code> an user to leave an editing form under the penalty of to loosing its changes...</li>
+<li>neither you should lost your scrolling state when you just want to make a round trip to a detail page...</li>
+</ul>
+<p><code>ViewModel</code> framework allow to spare and share <code>Domain Model</code> state acrros all components or controls.</p>
+<p><code>ViewModel Life cycle</code> is more than a simple <code>Store management</code> or <code>Reference counting</code> (aka smart pointer):</p>
+<ul>
+<li><code>ViewModel</code> framework manage <code>Dependencies Life Cycle</code> on other <code>ViewModel</code>,</li>
+<li>A <code>ViewModels</code> stay alive when<ul>
+<li>it is the current <code>ViewModels</code></li>
+<li>or it is in editing mode</li>
+<li>or it is the dependency of an alive <code>ViewModels</code></li>
+<li>or it&#39;s <code>Lease date</code> is still valid</li>
+</ul>
+</li>
+</ul>
+<h2>Summary</h2>
+<p>JOE is not dependend to a specific UI Framework as Angular, React or Vue: Its runtime is standalone.</p>
+<p>At first, JOE has been trainned on Angular but React and Vue should match as well.</p>
+<p>Some of you may be disapointed by the use of <code>ViewModel</code> or <code>Statefull</code> pattern. However i&#39;ve been on the field for a while and as many i did <code>Redux &amp; Immutable</code>... My feedback on those is: <strong>what&#39;s the use ?</strong></p>
+<p><code>Redux &amp; Immutable</code> introduce a useless complexity case without tacking the global picture.</p>
+<p>My purpose is not <code>Redux &amp; Immutable</code> bashing but why you never see demo real case demo: </p>
+<ul>
+<li>complex model ( hierarchy of data having list of list) </li>
+<li>complex business rule relying</li>
+<li>ChangeSet management,</li>
+<li>live cycle management ( over the model itself  and its dependencies)</li>
+<li>iring common implementation on UI and code action...*</li>
+</ul>
+<p>Why... because half of the features you&#39;ll need do not comply with Redux &amp; Immutable.</p>
+<ul>
+<li>Validation</li>
+<li>ChangeSet</li>
+<li>Business beaviour</li>
+<li>Transient property</li>
+<li>External reference</li>
+</ul>
+<p>I don&#39;t say <code>Redux &amp; Immutable</code> can not work but it exists simpler and more efficient pattern to manage <code>Domain Models</code> in an app.</p>
+<p>All the critics i&#39;ve read on <code>ViewModel</code> or <code>Statefull</code> pattern come from persons that don&#39;t know how to  correctly implement these patterns.</p>
+<ul>
+<li>Do you think it is different for <code>Redux &amp; Immutable</code>!</li>
+</ul>
+<p>JOE is not only a framework that brings technical solution to data management but it also propose an architecture to organize your code and tackle <code>Business Complexity</code> in a Single Page Application:</p>
+<ul>
+<li><strong>Resolver</strong> handle Navigation to inject the <code>ViewModels</code> required by an UI Component,</li>
+<li><strong>ViewModel</strong> manage and publish <code>Domain Model</code> <ul>
+<li>life cycle,</li>
+<li>loading,</li>
+<li>saving,</li>
+<li>validation</li>
+<li>business logic</li>
+<li>External dependencies: Ex <code>Reference table</code></li>
+<li>...</li>
+</ul>
+</li>
+<li><strong>View Element</strong> implement <code>Domain Model</code> editing &amp; runtime behaviour</li>
+</ul>
+<p>NB: On Angular, JOE allows UI Component to use  on <code>On push</code> Change detection to optimize rendering engine:</p>
+<ul>
+<li><p>A ViewModel publish an &#39;onStateChange&#39; observable for UI Component to re render its DOM.</p>
+</li>
+<li><p>At last a a <code>Business Context</code> can be an <code>hierarchy</code> of <code>View Model</code> as <code>Business Domain</code> can be an <code>hierarchy</code> of <code>View Element</code>.</p>
+</li>
+</ul>
+<p>Let me tell you a real case story to illustrate JOE</p>
+<p><em>I&#39;ve worked on <code>Gaz business</code> where a <code>Customer contract</code> relies on <code>Core Corporate Contract</code>, the <code>Customer contract</code> by itself was 4 levels deep hierarchy having multiple branch including a list of formula that can override parts of the <code>Core Corporate Contract</code> ones. Each formula has a list of parameters which unit may not match the <code>Customer contract</code> Units (those were inputs value or inherited value from <code>Core Corporate Contract</code>) in this case a convertion had to be applied. The final goal of a <code>Customer contract</code>all was to valuate a deal .</em></p>
+<p><em>On the UI the end user was editing the <code>Customer contract</code> parameters and running simulation to define the right set of formulas that defined the deal, errors were computed live, any action should be cancelable. During a simulation the end user should be able to make round trip to other contract to check other formulas without loosing its inputs...</em></p>
+<p><em>When an external formula was interesting, the user could import it into its <code>Customer contract</code> and you should be able to create part of the contract by code.</em></p>
+<p>Joe implementation was tricky but the achitecture was clear:</p>
+<ul>
+<li>The <code>Customer contract</code> View Model had following dependencies<ul>
+<li><code>Core Corporate Contract</code> View Model</li>
+<li><code>Currency Converter Referential</code> View Model</li>
+<li><code>Mollecule Converter Referential</code> View</li>
+<li><code>Currency Convertion Rate Timeseries</code></li>
+<li><code>Mollecule index Timeseries</code> View Model</li>
+</ul>
+</li>
+</ul>
+<p>Beside the basic <code>View Model</code> behaviours, the <code>Customer Contract</code> View Model was implementing two business feature across all its dependencies:</p>
+<ul>
+<li>Publish a <code>Customer Contract View</code> that merged the <code>Core Corporate Contract</code> with the current <code>Customer contract</code> overrides.</li>
+<li>Valuate the `Customer Contract Deal&#39; with the into the contract unitis over the contract periods.</li>
+</ul>
+<p><a href="./why-joe/joe-view.html"><strong>Next...</strong></a></p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'why-joe.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

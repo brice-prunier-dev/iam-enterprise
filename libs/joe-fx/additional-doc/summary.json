@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Why Joe",
+        "file": "index.md",
+        "children": [
+            {
+                "title": "Joe View",
+                "file": "./view/view-01-overview.md"
+            },
+            {
+                "title": "JOE View Element",
+                "file": "./view/view-02-element.md"
+ 
+            },
+            {
+                "title": "JOE Domain Model",
+                "file": "./view/view-03-domainmodel.md"
+ 
+            },
+            {
+                "title": "Joe Types",
+                "file": "./types/type-01-overview.md"
+            },
+            {
+                "title": "Type Core Features",
+                "file": "./types/type-02-type.md"
+            },
+            {
+                "title": "Array Typey",
+                "file": "./types/type-03-array.md"
+            }
+        ]
+    }
+]

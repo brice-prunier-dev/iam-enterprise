@@ -1,0 +1,2745 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >SetviewEditor</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/views/setview-editor.ts</code>
+        </p>
+
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/IEditor.html" target="_self" >IEditor</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#editCache" >editCache</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isSortArray" >isSortArray</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_applyChange" >_applyChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#_LOCATION" >_LOCATION</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#add" >add</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#applyChangeSet" >applyChangeSet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#cancelEdit" >cancelEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#endEdit" >endEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getIndexPath" >getIndexPath</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getPushIndex" >getPushIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#indexInfoOfDeletedItem" >indexInfoOfDeletedItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#indexInfoOfDeletedSourceItem" >indexInfoOfDeletedSourceItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#indexInfoOfInsertedItem" >indexInfoOfInsertedItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#indexInfoOfModified" >indexInfoOfModified</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isDeletedItem" >isDeletedItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isDirty" >isDirty</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isInsertedItem" >isInsertedItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isModifiedItem" >isModifiedItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isPristine" >isPristine</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isTouched" >isTouched</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#itemChangeState" >itemChangeState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#update" >update</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validate" >validate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#writeChangeSet" >writeChangeSet</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#hasScalarItems" >hasScalarItems</a>
+                                </li>
+                                <li>
+                                    <a href="#hasDeletedItem" >hasDeletedItem</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_view, _obj: T[])</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/lib/views/setview-editor.ts:72</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_view</td>
+                                                  
+                                                        <td>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_obj</td>
+                                                  
+                                                        <td>
+                                                                    <code>T[]</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editCache"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>editCache</b></span>
+                        <a href="#editCache"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EditCache.html" target="_self" >EditCache&lt;[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/views/setview-editor.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSortArray"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isSortArray</b></span>
+                        <a href="#isSortArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/views/setview-editor.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_applyChange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_applyChange</b></span>
+                        <a href="#_applyChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_applyChange(change: <a href="../interfaces/ChangeItem.html" target="_self">ChangeItem</a>, isRoot: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>change</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ChangeItem.html" target="_self" >ChangeItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>isRoot</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_LOCATION"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                        <span ><b>_LOCATION</b></span>
+                        <a href="#_LOCATION"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_LOCATION(element: <a href="../interfaces/IViewElement.html" target="_self">IViewElement</a>, array: <a href="../interfaces/IViewElement.html" target="_self">IViewElement[]</a>, comparer: <a href="../undefineds/SortComparer.html" target="_self">SortComparer</a>, start?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, end?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>element</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>array</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>comparer</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#SortComparer" target="_self" >SortComparer</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>end</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>add</b></span>
+                        <a href="#add"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>add(input: T, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>-1</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ISetElementOf.html" target="_self" >ISetElementOf&lt;T&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyChangeSet"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>applyChangeSet</b></span>
+                        <a href="#applyChangeSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyChangeSet(changeset: <a href="../undefineds/ChangeSet.html" target="_self">ChangeSet</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:169</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changeset</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ChangeSet" target="_self" >ChangeSet</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEdit"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>cancelEdit</b></span>
+                        <a href="#cancelEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelEdit(localBrach: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, raiseNotif: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>localBrach</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>raiseNotif</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="endEdit"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>endEdit</b></span>
+                        <a href="#endEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>endEdit(localBranch: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, raiseNotif: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>localBranch</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>raiseNotif</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getIndexPath"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>getIndexPath</b></span>
+                        <a href="#getIndexPath"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getIndexPath(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPushIndex"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>getPushIndex</b></span>
+                        <a href="#getPushIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPushIndex(item: <a href="../interfaces/IViewElement.html" target="_self">IViewElement</a>, comparer: <a href="../undefineds/SortComparer.html" target="_self">SortComparer</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>comparer</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#SortComparer" target="_self" >SortComparer</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indexInfoOfDeletedItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>indexInfoOfDeletedItem</b></span>
+                        <a href="#indexInfoOfDeletedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>indexInfoOfDeletedItem(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code> | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indexInfoOfDeletedSourceItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>indexInfoOfDeletedSourceItem</b></span>
+                        <a href="#indexInfoOfDeletedSourceItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>indexInfoOfDeletedSourceItem(idxObj: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="275"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:275</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idxObj</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code> | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indexInfoOfInsertedItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>indexInfoOfInsertedItem</b></span>
+                        <a href="#indexInfoOfInsertedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>indexInfoOfInsertedItem(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:285</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code> | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indexInfoOfModified"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>indexInfoOfModified</b></span>
+                        <a href="#indexInfoOfModified"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>indexInfoOfModified(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="295"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:295</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code> | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDeletedItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isDeletedItem</b></span>
+                        <a href="#isDeletedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isDeletedItem(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:305</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDirty"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isDirty</b></span>
+                        <a href="#isDirty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isDirty(property?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:309</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>property</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isInsertedItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isInsertedItem</b></span>
+                        <a href="#isInsertedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isInsertedItem(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="321"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:321</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isModifiedItem"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isModifiedItem</b></span>
+                        <a href="#isModifiedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isModifiedItem(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="325"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:325</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isPristine"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isPristine</b></span>
+                        <a href="#isPristine"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isPristine()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="329"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:329</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTouched"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isTouched</b></span>
+                        <a href="#isTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isTouched()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="337"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:337</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemChangeState"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>itemChangeState</b></span>
+                        <a href="#itemChangeState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>itemChangeState(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="352"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:352</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/enumerations.html#EStateChanges" target="_self" >EStateChanges</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(input: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="363"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:363</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ISetElementOf.html" target="_self" >ISetElementOf&lt;T&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, input: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="394"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:394</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ISetElementOf.html" target="_self" >ISetElementOf&lt;T&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validate"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>validate</b></span>
+                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validate()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="417"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:417</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>[] | undefined</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="writeChangeSet"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>writeChangeSet</b></span>
+                        <a href="#writeChangeSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>writeChangeSet(changeset: <a href="../undefineds/ChangeSet.html" target="_self">ChangeSet</a>, paths?: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="421"
+                                    class="link-to-prism">src/lib/views/setview-editor.ts:421</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changeset</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ChangeSet" target="_self" >ChangeSet</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>paths</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasScalarItems"></a>
+                        <span class="name"><b>hasScalarItems</b><a href="#hasScalarItems"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hasScalarItems()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/lib/views/setview-editor.ts:65</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasDeletedItem"></a>
+                        <span class="name"><b>hasDeletedItem</b><a href="#hasDeletedItem"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hasDeletedItem()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/lib/views/setview-editor.ts:70</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    wrapAsPositionSelector,
+    decodeOneSelectorValue,
+    readPath,
+    AType,
+    PropertyTypology,
+    EditCache,
+    ChangeSet,
+    EStateChanges,
+    Scalar,
+    ChangeItem,
+    MetadataHelper,
+    IViewElement,
+    IEditor,
+    ISetElementOf,
+    JoeLogger,
+    SortComparer,
+    isBlank,
+    IndexableType,
+    isMatchingIndexObj,
+    pathAsChangeTuple,
+    BaseType,
+    AnyDef,
+    ValidationScopes,
+    isArrayAssigned,
+    ElementNotifications,
+    PATH_ROOT} from &#x27;../core&#x27;;
+import {Tobject, Tarray, ArrayViewFactory} from &#x27;../types&#x27;;
+import {Objview} from &#x27;./objview&#x27;;
+
+export class SetviewEditor&lt;T extends Scalar | IViewElement&gt; implements IEditor {
+    private static _LOCATION(
+        element: IViewElement,
+        array: IViewElement[],
+        comparer: SortComparer,
+        start?: number,
+        end?: number
+    ): number {
+        if (array.length &#x3D;&#x3D;&#x3D; 0) {
+            return -1;
+        }
+
+        start &#x3D; start || 0;
+        end &#x3D; end || array.length;
+        const pivot &#x3D; (start + end) &gt;&gt; 1; // should be faster than dividing by 2
+
+        const c &#x3D; comparer(element, array[pivot]);
+        if (end - start &lt;&#x3D; 1) {
+            return c &#x3D;&#x3D;&#x3D; -1 ? start : end;
+        }
+        switch (c) {
+            case -1:
+                return SetviewEditor._LOCATION(element, array, comparer, start, pivot);
+            case 1:
+                return SetviewEditor._LOCATION(element, array, comparer, pivot, end);
+            default:
+                return pivot;
+        }
+    }
+
+    public readonly editCache: EditCache&lt;[number, T][]&gt;;
+  
+    public isSortArray: boolean;
+
+    protected get hasScalarItems(): boolean {
+        const type &#x3D; this._view.$src.type as Tarray;
+        return type.itemsTypeDef!.kind &#x3D;&#x3D;&#x3D; PropertyTypology.Scalar;
+    }
+
+    public get hasDeletedItem(): boolean {
+        return this.editCache.deleted.length &gt; 0;
+    }
+
+    constructor(private _view: IViewElement &amp; ISetElementOf&lt;T&gt; &amp; Array&lt;T&gt;, private _obj: T[]) {
+        this.editCache &#x3D; {inserted: [], deleted: [], modified: []};
+        const t &#x3D; _view.$src.type as Tarray;
+         this.isSortArray &#x3D; t.hasObjectItems &amp;&amp; (t.itemsTypeDef!.def as Tobject&lt;T&gt;).withIndex;
+     
+    }
+
+    private _applyChange(change: ChangeItem, isRoot: boolean): void {
+        const src &#x3D; this._view.$src;
+        const atype &#x3D; src.type as Tarray;
+        const scalarItems &#x3D; atype.hasScalarItems;
+        if (change.path &#x3D;&#x3D;&#x3D; src.path) {
+            switch (change.op) {
+                case EStateChanges.inserted:
+                    if (scalarItems) {
+                        this._view.add(change.value as T, -1);
+                    } else if (atype.isTuple) {
+                        this._view.add(change.value, decodeOneSelectorValue(change.selector as string) as number);
+                    } else if (atype.isMultiDimension) {
+                        const newItemSet &#x3D; this._view.$newChild();
+                        this._view.add(newItemSet as T, -1);
+                    } else {
+                        const newItem &#x3D; this._view.$newChild();
+                        if (newItem instanceof Objview) {
+                            newItem.$assign(change.value);
+                        }
+                        this._view.add(newItem as T, -1);
+                    }
+                    break;
+                case EStateChanges.deleted:
+                    if (scalarItems) {
+                        this._view.remove(change.value as T);
+                    } else {
+                        this._view.removeAt(this._view.$indexOfPath(change.selector!));
+                    }
+                    break;
+            }
+            if (change.op &#x3D;&#x3D;&#x3D; EStateChanges.updated || change.op &#x3D;&#x3D;&#x3D; EStateChanges.inserted) {
+                this._view.$assign(change.value, isRoot);
+            }
+        } else {
+            const root &#x3D; src.root().obj as IViewElement;
+            const target &#x3D; readPath(root, change.path) as IViewElement;
+            if (target) {
+                target.$edit().applyChangeSet([change]);
+            }
+        }
+    }
+
+
+
+    public add(input: T, index: number &#x3D; -1): ISetElementOf&lt;T&gt; {
+        if (this._view.indexOf(input) &gt; -1) {
+            return this._view;
+        }
+        let isRollback &#x3D; false;
+        const indexInfoIfDeleted &#x3D; this.indexInfoOfDeletedItem(input);
+        isRollback &#x3D; indexInfoIfDeleted !&#x3D;&#x3D; undefined;
+        if (isRollback) {
+            this.editCache.deleted.splice(indexInfoIfDeleted![1], 1);
+            index &#x3D; indexInfoIfDeleted![0] - 1
+        }
+        if (this.isSortArray) {
+            const otype &#x3D; (this._view.$src.type as Tarray).itemsTypeDef!.def as Tobject;
+            const comparer &#x3D; otype.index!.sort
+                ? ArrayViewFactory.PropertiesComparer(otype.index!.sort as string[])
+                : ArrayViewFactory.PropertiesComparer(otype.index!.id as string[]);
+            index &#x3D; this.getPushIndex(input as IViewElement, comparer);
+        }
+
+        if (index &#x3D;&#x3D;&#x3D; -1) {
+            index &#x3D; this._view.length;
+            index &#x3D; this._view.push(input);
+        } else {
+            this._view.splice(index, 0, input);
+        }
+
+        let path &#x3D; wrapAsPositionSelector(index);
+        if (!this._view.$containsScalars) {
+            const tmp &#x3D; input as any;
+            const childView &#x3D; tmp as IViewElement;
+            if ((childView.$src.type as IndexableType).withIndex) {
+                path &#x3D; (childView.$src.type as IndexableType).getIndexPath(childView);
+            }
+            this._view.$src.setParentChildView(childView, path);
+        }
+        if (!isRollback) {
+            this.editCache.inserted.push([index, input]);
+        }
+        this._view.validate(ValidationScopes.AddChild, path);
+
+        this._view.$notify(ElementNotifications.dataChanged);
+        return this._view;
+    }
+
+    public applyChangeSet(changeset: ChangeSet): void {
+        let idx &#x3D; 0;
+        for (const change of changeset) {
+            this._applyChange(change, idx &#x3D;&#x3D;&#x3D; 0);
+            idx++;
+        }
+
+    }
+
+    public cancelEdit(localBrach: boolean &#x3D; false, raiseNotif: boolean &#x3D; true) {
+        if (!localBrach) {
+            const rootView &#x3D; this._view.$root();
+            rootView.$editor!.cancelEdit(true);
+            rootView.validate(ValidationScopes.EnforceState);
+        } else {
+            const src &#x3D; this._view.$src;
+            const type &#x3D; src.type as Tarray;
+
+            if (type.hasObjectItems) {
+                const elements &#x3D; [
+                    ...this._view,
+                    ...this.editCache.deleted.map((d) &#x3D;&gt; d[1])
+                ];
+                elements
+                    .filter((value) &#x3D;&gt; !this.isInsertedItem(value))
+                    .filter((value) &#x3D;&gt; (value as IViewElement).$isEditing)
+                    .forEach((value) &#x3D;&gt; (value as IViewElement).$editor!.cancelEdit(true, false), this);
+
+                this._view.splice(0);
+                this._obj.forEach(
+                    (value) &#x3D;&gt; this._view.push(elements.find((e) &#x3D;&gt; (e as IViewElement).$src.obj &#x3D;&#x3D;&#x3D; value) as T),
+                    this
+                );
+
+                this.editCache.inserted.forEach(
+                    (value) &#x3D;&gt; (value[1] as IViewElement).$release(),
+                    this
+                );
+            } else {
+                this._view.splice(0);
+                this._obj.forEach((value) &#x3D;&gt; this._view.push(value), this);
+            }
+            this._view.$validation.clear();
+            this._view.$editor &#x3D; undefined;
+            if (raiseNotif) {
+                this._view.$notify(ElementNotifications.cancelEdit);
+            }
+        }
+
+
+    }
+
+    public endEdit(localBranch: boolean &#x3D; false, raiseNotif: boolean &#x3D; true): void {
+        if (!localBranch) {
+            const rootView &#x3D; this._view.$root();
+            rootView.$editor!.endEdit(true);
+        } else {
+            const type &#x3D; this._view.$src.type as AType;
+            JoeLogger.indent();
+            JoeLogger.action(&#x27;End Edit&#x27;, type.title);
+
+            if (!this.hasScalarItems) {
+                this._view.forEach((item: any) &#x3D;&gt; {
+                    const docElement &#x3D; item as IViewElement;
+                    if (docElement.$isEditing) {
+                        docElement.$editor!.endEdit(true, false);
+                    }
+                });
+            }
+            this._obj.splice(0);
+            if (this._view.length &gt; 0) {
+                if (this.hasScalarItems) {
+                    this._view.forEach((s: T) &#x3D;&gt; this._obj.push(s));
+                } else {
+                    (this._view as unknown as IViewElement[]).forEach(
+                        (s) &#x3D;&gt; this._obj.push(s.$src.obj),
+                        this
+                    );
+                }
+            }
+            this._view.$notify(ElementNotifications.endEdit);
+        }
+    }
+
+    public getIndexPath(item: any, index: number): string {
+        return (this._view.$src.type as IndexableType).getIndexPath(item, index);
+    }
+
+    public getPushIndex(item: IViewElement, comparer: SortComparer): number {
+        const array &#x3D; this._view as any;
+        return SetviewEditor._LOCATION(item, array as IViewElement[], comparer);
+        // return index &#x3D;&#x3D;&#x3D; 0
+        //     ? 0
+        //     : index + 1;
+    }
+
+    public indexInfoOfDeletedItem(item: any): [number, number] | undefined {
+        for (let index &#x3D; 0; index &lt; this.editCache.deleted.length; index++) {
+            const rec &#x3D; this.editCache.deleted[index]!;
+            if (rec[1] &#x3D;&#x3D;&#x3D; item) {
+                return [rec[0], index];
+            }
+        }
+        return undefined;
+    }
+
+    public indexInfoOfDeletedSourceItem(idxObj: {}): [number, T] | undefined {
+        for (let index &#x3D; 0; index &lt; this.editCache.deleted.length; index++) {
+            const rec &#x3D; this.editCache.deleted[index]!;
+            if (isMatchingIndexObj((rec[1] as IViewElement).$src.obj, idxObj)) {
+                return rec;
+            }
+        }
+        return undefined;
+    }
+
+    public indexInfoOfInsertedItem(item: any): [number, number] | undefined {
+        for (let index &#x3D; 0; index &lt; this.editCache.inserted.length; index++) {
+            const rec &#x3D; this.editCache.inserted[index]!;
+            if (rec[1] &#x3D;&#x3D;&#x3D; item) {
+                return [rec[0], index];
+            }
+        }
+        return undefined;
+    }
+
+    public indexInfoOfModified(index: number): [number, T] | undefined {
+        for (let index &#x3D; 0; index &lt; this.editCache.modified.length; index++) {
+            const rec &#x3D; this.editCache.modified[index]!;
+            if (rec[0] &#x3D;&#x3D;&#x3D; index) {
+                return rec;
+            }
+        }
+        return undefined;
+    }
+
+    public isDeletedItem(item: any): boolean {
+        return this.editCache.deleted.some((i) &#x3D;&gt; i[1] &#x3D;&#x3D;&#x3D; item);
+    }
+
+    public isDirty(property?: string): boolean {
+        if (isBlank(property)) {
+            return !this.isPristine();
+        } else {
+            return (
+                this.isInsertedItem(property) ||
+                this.isDeletedItem(property) ||
+                this.isModifiedItem(property)
+            );
+        }
+    }
+
+    public isInsertedItem(item: any): boolean {
+        return this.editCache.inserted.some((i) &#x3D;&gt; i[1] &#x3D;&#x3D;&#x3D; item);
+    }
+
+    public isModifiedItem(item: any): boolean {
+        return this.editCache.modified.some((i) &#x3D;&gt; i[1] &#x3D;&#x3D;&#x3D; item);
+    }
+
+    public isPristine(): boolean {
+        return (
+            this.editCache.inserted.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+            this.editCache.deleted.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+            this.editCache.modified.length &#x3D;&#x3D;&#x3D; 0
+        );
+    }
+
+    public isTouched(): boolean {
+        if (!this.isPristine()) {
+            return true;
+        }
+        const children &#x3D; this._view.$children() as IViewElement[];
+        for (const child of children) {
+            if (child.$isEditing) {
+                if (child.$editor!.isTouched()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public itemChangeState(item: any): EStateChanges {
+        if (this.isInsertedItem(item)) {
+            return EStateChanges.inserted;
+        } else if (this.isDeletedItem(item)) {
+            return EStateChanges.deleted;
+        } else if (this.isModifiedItem(item)) {
+            return EStateChanges.updated;
+        }
+        return EStateChanges.none;
+    }
+
+    public remove(input: T): ISetElementOf&lt;T&gt; {
+        const index &#x3D; this._view.indexOf(input);
+        if (index &#x3D;&#x3D;&#x3D; -1) {
+            return this._view;
+        }
+        const indexInfoIfInserted &#x3D; this.indexInfoOfInsertedItem(input);
+        let path &#x3D; wrapAsPositionSelector(index);
+        if (!this._view.$containsScalars) {
+            const childView &#x3D; input as IViewElement;
+            if ((childView.$src.type as IndexableType).withIndex) {
+                path &#x3D; (childView.$src.type as IndexableType).getIndexPath(childView);
+            }
+        }
+        let doRemove &#x3D; index &gt; -1;
+        let registerRemove &#x3D; isBlank(indexInfoIfInserted);
+        if (doRemove &amp;&amp; !registerRemove) {
+            this.editCache.inserted.splice(indexInfoIfInserted![1], 1);
+        }
+        if (doRemove) {
+            this._view.splice(index, 1);
+            this._view.validate(ValidationScopes.RemoveChild, path);
+        }
+        if (registerRemove) {
+            this.editCache.deleted.push([index, input]);
+
+        }
+
+        this._view.$notify(ElementNotifications.dataChanged);
+        return this._view;
+    }
+
+    public update(index: number, input: T): ISetElementOf&lt;T&gt; {
+        const src &#x3D; this._view.$src;
+        const atype &#x3D; src.type as Tarray;
+        if (atype.isTuple) {
+            const modifRec &#x3D; this.indexInfoOfModified(index);
+            const valueType &#x3D; (atype.itemsTypeDef!.def as (AnyDef &amp; BaseType)[])[index] as AnyDef &amp;
+                BaseType;
+
+            if (!valueType.containsScalars) {
+                var oldItem &#x3D; this._view[index] as IViewElement;
+                oldItem.$src.unsetParent();
+                this._view.$src.setParentChildView(input as IViewElement, wrapAsPositionSelector(index));
+            }
+            this._view[index] &#x3D; input;
+            if (modifRec) {
+                modifRec[1] &#x3D; input;
+            } else {
+                this.editCache.modified.push([index, input]);
+            }
+        }
+        return this._view;
+    }
+
+    public validate(): string[] | undefined {
+        return undefined;
+    }
+
+    public writeChangeSet(changeset: ChangeSet, paths?: string[]): void {
+        const src &#x3D; this._view.$src;
+        const atype &#x3D; src.type as Tarray;
+        const [relativePath, selector] &#x3D; pathAsChangeTuple(src.path);
+        const scalarItems &#x3D; atype.hasScalarItems;
+        const multiDim &#x3D; atype.isMultiDimension;
+        const childType &#x3D; scalarItems
+            ? (atype.items as AnyDef).type
+            : multiDim
+                ? &quot;array&quot;
+                : (atype.items as AnyDef).title;
+
+        if (this._view.$isRoot()) {
+            const isNew &#x3D; atype.isNew(src.obj);
+            if (isNew) {
+                changeset.push({
+                    $type: childType,
+                    op: EStateChanges.inserted,
+                    path: relativePath,
+                    value: this._view.$json(),
+                    selector,
+                    type: childType,
+                });
+                return;
+            }
+        } else if (src.detached) {
+            changeset.push({
+                $type: childType,
+                op: EStateChanges.inserted,
+                path: paths![0]!,
+                value: this._view.$json(),
+                selector: paths![1]!,
+                type: childType,
+            });
+            return;
+        }
+        if (this.editCache.deleted.length &gt; 0) {
+            for (const [deleletedIndex, deleletedView] of this.editCache.deleted) {
+                if (scalarItems) {
+                    changeset.push({
+                        $type: childType,
+                        op: EStateChanges.deleted,
+                        path: this._view.$src.path,
+                        selector: &#x27;_&#x27;,
+                        value: deleletedView,
+                        type: childType,
+                    });
+                } else if (MetadataHelper.asView(deleletedView)) {
+                    const delInfo &#x3D; deleletedView.$src;
+                    if ((delInfo.type as IndexableType).withIndex) {
+                        changeset.push({
+                            $type: childType,
+                            op: EStateChanges.deleted,
+                            path: this._view.$src.path,
+                            selector: (delInfo.type as IndexableType).getIndexPath(
+                                deleletedView,
+                                deleletedIndex
+                            ),
+                            value: deleletedView.$json,
+                            type: childType,
+                        });
+                    } else {
+                        changeset.push({
+                            $type: childType,
+                            op: EStateChanges.deleted,
+                            path: this._view.$src.path,
+                            selector: wrapAsPositionSelector(deleletedIndex),
+                            value: delInfo.obj,
+                            type: childType,
+                        });
+                    }
+                }
+            }
+        }
+        if (scalarItems) {
+            if (this.editCache.inserted.length &gt; 0) {
+                for (const [newScalarIndex, newScalarValue] of this.editCache.inserted) {
+                    changeset.push({
+                        $type: childType,
+                        op: EStateChanges.inserted,
+                        path: this._view.$src.path,
+                        selector: &#x27;_&#x27;,
+                        value: newScalarValue,
+                        type: childType,
+                    });
+                }
+            }
+        } else {
+            for (const viewItem of this._view as unknown as IViewElement[]) {
+                if (viewItem.$isEditing) {
+                    const insertedIndexInfo &#x3D; this.indexInfoOfInsertedItem(viewItem);
+                    if (isArrayAssigned(insertedIndexInfo)) {
+                        const itemPayload &#x3D; {
+                            $type: childType,
+                            op: EStateChanges.inserted,
+                            path: viewItem.$src.path,
+                            selector: atype.getIndexPath(viewItem, insertedIndexInfo![0]),
+                            value: viewItem.$json(),
+                            type: childType,
+                        }
+                        changeset.push(itemPayload);
+                    }
+                    viewItem.$editor!.writeChangeSet(changeset);
+                }
+            }
+        }
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SetviewEditor.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

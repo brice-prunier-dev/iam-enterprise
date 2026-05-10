@@ -1,0 +1,303 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Tarray (file type.array.ts)</h1>
+<h2>Array Options</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">export interface ArrayOptions {
+  title: string;
+  minlength: number;
+  maxlength: number;
+  items: PropertySchema; // = AnySchema | AnySchema[];
+}</code></pre></div><h2>Tarray class</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">export class Tstring implements StringOptions, BaseType {
+
+  public viewctor: SetviewType;
+  public type: ArrayTypeKey; //=&#39;array&#39;
+  public title: string;
+  public items: PropertySchema;
+  public itemsTypeDef: ArrayInfo;
+  public patern: number;
+  public minlength: number;
+  public maxlength: number;
+  public size: number;
+  
+  public get hasScalarItems(): boolean {}
+  public get hasObjectItems(): boolean {}
+  public get isTuple(): boolean {}
+  public get isMultiDimension(): boolean {}
+
+  
+  /**
+    * Tstring constructor  
+    */
+  constructor ( options: ArrayOptions, name?: string ){}
+  
+  public options(): ArrayOptions {}
+  
+  public defaultValue(): any[] {}
+
+  public prepare( obj: any, parent?: any, path: string = PATH_ROOT, recursive: boolean = true ) {}
+
+  public unprepare( obj: any ) {}
+  public validate( subject: any, action: ValidationAction, scope?: string | object, previousErrors?: ValidationError ): ValidationError {}
+
+  public fillValidationSummary( objErrors: ValidationError, summary: RuntimeSummary, path: string ): RuntimeSummary {}
+
+}</code></pre></div><table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>t types</th>
+<th align="left">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t.string._</td>
+<td align="left">Text with no constraint.</td>
+</tr>
+<tr>
+<td>t.string.text</td>
+<td align="left">Text limited to 2000 char.</td>
+</tr>
+<tr>
+<td>t.string.smalltext</td>
+<td align="left">Text limited to 500 char.</td>
+</tr>
+<tr>
+<td>t.string.line</td>
+<td align="left">Text limited to 250 char.</td>
+</tr>
+<tr>
+<td>t.string.sentence</td>
+<td align="left">Text limited to 250 char.</td>
+</tr>
+<tr>
+<td>t.string.words</td>
+<td align="left">Text limited to 150 char.</td>
+</tr>
+<tr>
+<td>t.string.name</td>
+<td align="left">Text limited to 75 char.</td>
+</tr>
+<tr>
+<td>t.string.word</td>
+<td align="left">Text limited to 35 char.</td>
+</tr>
+<tr>
+<td>t.string.id</td>
+<td align="left">Token limited to 50 char.</td>
+</tr>
+<tr>
+<td>t.string.ip</td>
+<td align="left">Ip v4 or v6 &#39;##0.##0.##0.##0&#39;.</td>
+</tr>
+<tr>
+<td>t.string.ip</td>
+<td align="left">Ip rz&#39;##0.##0.##0.##0/#0&#39;.</td>
+</tr>
+</tbody>
+</table>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">    /** Mandatory text limited to 50 char.*/
+    export const id = new Tstring( StringDef.ID );
+    /** Mandatory text to write an ip v4 or v6.*/
+    export const ip = new Tstring(
+      {
+        title: &#39;S_IP&#39;,
+        minlength: 7,
+        maxlength: 40,
+        pattern: ipRegExText,
+        patternModel: &#39;##0.##0.##0.##0&#39;
+      } );
+    export const iprange = new Tstring(
+      {
+        title: &#39;S_IP&#39;,
+        minlength: 7,
+        maxlength: 40,
+        pattern: ipRegExText,
+        patternModel: &#39;##0.##0.##0.##0/#0&#39;
+      } );
+    export const url = new Tstring(
+      {
+        title: &#39;S_IP&#39;,
+        minlength: 8,
+        maxlength: 180,
+        pattern: urlRegExText,
+        patternModel: &#39;http(s)://xxxx.xxx&#39;
+      } );
+    /** Mandatory text as path */
+    export const path = new Tstring(
+      {
+        title: &#39;S_PATH&#39;,
+        minlength: 1,
+        maxlength: 150,
+        pattern: PATH_PATTERN,
+        patternModel: &#39;$-&gt;x-&gt;y&#39;
+      } );</code></pre></div>
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'array-typey.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

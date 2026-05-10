@@ -1,0 +1,3128 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >Setview</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/views/setview.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code>Array</code>
+            </p>
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/ISetElementOf.html" target="_self" >ISetElementOf</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#_parent_" >_parent_</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#_signal" >_signal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_signalRef" >_signalRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_ver_" >_ver_</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#$editor" >$editor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#$rules" >$rules</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$validation" >$validation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onViewChanged" >onViewChanged</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$assign" >$assign</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$asString" >$asString</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$children" >$children</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$clone" >$clone</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$edit" >$edit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$endEdit" >$endEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$getByIndex" >$getByIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$indexOfPath" >$indexOfPath</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$isRoot" >$isRoot</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$json" >$json</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$newChild" >$newChild</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$notify" >$notify</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#$notifyEvent" >$notifyEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$parent" >$parent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$refresh" >$refresh</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$refreshChild" >$refreshChild</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$release" >$release</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#$root" >$root</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#add" >add</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#contains" >contains</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#refreshSignal" >refreshSignal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#removeAt" >removeAt</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#update" >update</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validate" >validate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#$containsScalars" >$containsScalars</a>
+                                </li>
+                                <li>
+                                    <a href="#$isEditing" >$isEditing</a>
+                                </li>
+                                <li>
+                                    <a href="#$tracking" >$tracking</a>
+                                </li>
+                                <li>
+                                    <a href="#$src" >$src</a>
+                                </li>
+                                <li>
+                                    <a href="#$signalS" >$signalS</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(array?: any[], type?: <a href="../interfaces/AType.html" target="_self">AType</a>, parent?: <a href="../interfaces/IViewElement.html" target="_self">IViewElement</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/lib/views/setview.ts:130</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>array</td>
+                                                  
+                                                        <td>
+                                                                    <code>any[]</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>type</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/AType.html" target="_self" >AType</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>parent</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_parent_"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>_parent_</b></span>
+                        <a href="#_parent_"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/lib/views/setview.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_signal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>_signal</b></span>
+                        <a href="#_signal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/lib/views/setview.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_signalRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_signalRef</b></span>
+                        <a href="#_signalRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Mutable" target="_self" >WeakRef&lt;WritableSignal&lt;Mutable&lt;&gt;&gt;&gt; | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/lib/views/setview.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_ver_"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_ver_</b></span>
+                        <a href="#_ver_"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/views/setview.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$editor"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>$editor</b></span>
+                        <a href="#$editor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SetviewEditor&lt;T&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/lib/views/setview.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Editor instantiated when the view is in an editing mode</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$rules"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>$rules</b></span>
+                        <a href="#$rules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/lib/views/setview.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$validation"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$validation</b></span>
+                        <a href="#$validation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ListValidationState.html" target="_self" >ListValidationState</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/lib/views/setview.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onViewChanged"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>onViewChanged</b></span>
+                        <a href="#onViewChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DataPayload.html" target="_self" >Observable&lt;DataPayload&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="455" class="link-to-prism">src/lib/views/setview.ts:455</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$assign"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$assign</b></span>
+                        <a href="#$assign"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$assign(value: <a href="../undefineds/PartialData.html" target="_self">PartialData&lt;T&gt;[]</a>, isRootAssign: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, reset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/lib/views/setview.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#PartialData" target="_self" >PartialData&lt;T&gt;[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>isRootAssign</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>reset</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$asString"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$asString</b></span>
+                        <a href="#$asString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$asString()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="586"
+                                    class="link-to-prism">src/lib/views/setview.ts:586</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$children"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$children</b></span>
+                        <a href="#$children"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$children()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="264"
+                                    class="link-to-prism">src/lib/views/setview.ts:264</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement[]</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$clone"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$clone</b></span>
+                        <a href="#$clone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$clone(parent?: <a href="../interfaces/IViewElement.html" target="_self">IViewElement</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/lib/views/setview.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parent</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Setview.html" target="_self" >Setview&lt;T&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$edit"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$edit</b></span>
+                        <a href="#$edit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$edit(withTracking: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/lib/views/setview.ts:350</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>withTracking</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>SetviewEditor&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$endEdit"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$endEdit</b></span>
+                        <a href="#$endEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$endEdit(local: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, raiseNotif: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/lib/views/setview.ts:365</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Terminate edit mode if any.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>local</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>(default: false) when &#39;true&#39; changes are applied from current element otherwhy from the root element.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>raiseNotif</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>true</code>
+                                            </td>
+
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$getByIndex"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$getByIndex</b></span>
+                        <a href="#$getByIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$getByIndex(...keyValues: (string | number)[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/lib/views/setview.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>keyValues</td>
+                                            <td>
+                                                        <code>(string | number)[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>T | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$indexOfPath"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$indexOfPath</b></span>
+                        <a href="#$indexOfPath"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$indexOfPath(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="325"
+                                    class="link-to-prism">src/lib/views/setview.ts:325</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$isRoot"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$isRoot</b></span>
+                        <a href="#$isRoot"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$isRoot()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/lib/views/setview.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Is the current item the root of the doc.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$json"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$json</b></span>
+                        <a href="#$json"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$json()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/lib/views/setview.ts:302</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#JsonObj" target="_self" >JsonObj</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$newChild"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$newChild</b></span>
+                        <a href="#$newChild"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$newChild(initData?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="380"
+                                    class="link-to-prism">src/lib/views/setview.ts:380</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>Ta</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>initData</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Ta</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$notify"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$notify</b></span>
+                        <a href="#$notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$notify(event: <a href="../undefineds/ElementNotifications.html" target="_self">ElementNotifications</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="414"
+                                    class="link-to-prism">src/lib/views/setview.ts:414</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Bubble up an an event type to the root element.</p>
+<p>on each element if a viewModel is linked then the event is notify to the @link(core#types#ElementNotifications | Element Context).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#ElementNotifications" target="_self" >ElementNotifications</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$notifyEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>$notifyEvent</b></span>
+                        <a href="#$notifyEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$notifyEvent(event: <a href="../undefineds/ElementNotifications.html" target="_self">ElementNotifications</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="434"
+                                    class="link-to-prism">src/lib/views/setview.ts:434</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#ElementNotifications" target="_self" >ElementNotifications</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$parent"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$parent</b></span>
+                        <a href="#$parent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$parent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="451"
+                                    class="link-to-prism">src/lib/views/setview.ts:451</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Doc parent item.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$refresh"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$refresh</b></span>
+                        <a href="#$refresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$refresh(data: T[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="491"
+                                    class="link-to-prism">src/lib/views/setview.ts:491</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>T[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$refreshChild"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$refreshChild</b></span>
+                        <a href="#$refreshChild"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$refreshChild(property: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="529"
+                                    class="link-to-prism">src/lib/views/setview.ts:529</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>property</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$release"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$release</b></span>
+                        <a href="#$release"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$release()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="479"
+                                    class="link-to-prism">src/lib/views/setview.ts:479</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="$root"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>$root</b></span>
+                        <a href="#$root"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>$root()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="467"
+                                    class="link-to-prism">src/lib/views/setview.ts:467</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IViewElement.html" target="_self" >IViewElement</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>add</b></span>
+                        <a href="#add"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>add(input: T, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/lib/views/setview.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>-1</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contains"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>contains</b></span>
+                        <a href="#contains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>contains(item: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="321"
+                                    class="link-to-prism">src/lib/views/setview.ts:321</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshSignal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>refreshSignal</b></span>
+                        <a href="#refreshSignal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>refreshSignal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/lib/views/setview.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(input: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="457"
+                                    class="link-to-prism">src/lib/views/setview.ts:457</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAt"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>removeAt</b></span>
+                        <a href="#removeAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAt(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="461"
+                                    class="link-to-prism">src/lib/views/setview.ts:461</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, input: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/lib/views/setview.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>input</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validate"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>validate</b></span>
+                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validate(scope: <a href="../undefineds/ValidationScopes.html" target="_self">ValidationScopes</a>, scopeRef?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="554"
+                                    class="link-to-prism">src/lib/views/setview.ts:554</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>scope</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#ValidationScopes" target="_self" >ValidationScopes</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>ValidationScopes.State</code>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>scopeRef</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ValidationState.html" target="_self" >ValidationState</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$containsScalars"></a>
+                        <span class="name"><b>$containsScalars</b><a href="#$containsScalars"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>$containsScalars()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/lib/views/setview.ts:63</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$isEditing"></a>
+                        <span class="name"><b>$isEditing</b><a href="#$isEditing"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>$isEditing()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/lib/views/setview.ts:67</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$tracking"></a>
+                        <span class="name"><b>$tracking</b><a href="#$tracking"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>$tracking()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/lib/views/setview.ts:74</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p> get the tracking state of the view element.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>$tracking(newTrackingState: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/lib/views/setview.ts:84</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p> Set the tracking state of the view element.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>newTrackingState</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$src"></a>
+                        <span class="name"><b>$src</b><a href="#$src"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>$src()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/lib/views/setview.ts:98</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$signalS"></a>
+                        <span class="name"><b>$signalS</b><a href="#$signalS"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>$signalS()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/lib/views/setview.ts:102</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Observable} from &#x27;rxjs/internal/Observable&#x27;;
+import {Subject} from &#x27;rxjs/internal/Subject&#x27;;
+import {
+    PATH_ROOT,
+    wrapAsPositionSelector,
+    MetadataHelper,
+    IDataInfo,
+    IViewElement,
+    ISetElementOf,
+    PropertyTypology,
+    DataPayload,
+    ObjviewType,
+    AType,
+    Scalar,
+    MapviewTypeConstructor,
+    SetviewTypeConstructor,
+    MType,
+    ListValidationState,
+    ValidationState,
+    JsonObj,
+    PATH_UNASSIGNED,
+    ChangeSet,
+    extractContent,
+    isTextArray,
+    isMatchingIndexObj,
+    asArray,
+    ValidationRule,
+    ValidationScopes,
+    JoeLogger,
+    isMatchingSelector,
+    keyValuesAsIndexSelector,
+    PartialData,
+    pathFromParent,
+    ElementNotifications,
+    Mutable,
+    asMutable
+} from &#x27;../core&#x27;;
+import {Tarray, ArrayViewFactory, corelateValidationWithParents, MapViewFactory} from &#x27;../types&#x27;;
+import {SetviewEditor} from &#x27;./setview-editor&#x27;;
+import { V } from &#x27;@angular/cdk/keycodes&#x27;;
+import { Signal, WritableSignal, signal } from &#x27;@angular/core&#x27;;
+
+const setfreezedSym &#x3D; Symbol(&#x27;__setfreezed__&#x27;);
+function nowrite() {
+    return;
+}
+
+export class Setview&lt;T extends Scalar | IViewElement&gt;
+    extends Array&lt;T&gt;
+    implements ISetElementOf&lt;T&gt;
+{
+    private _parent_?: IViewElement;
+    private _ver_ &#x3D; 1;
+    private _signal? : Signal&lt;this&gt;;
+    private _signalRef: WeakRef&lt;WritableSignal&lt;Mutable&lt;this&gt;&gt;&gt; |undefined;
+    
+    /**
+     * Editor instantiated when the view is in an editing mode
+     */
+    public $editor?: SetviewEditor&lt;T&gt;;
+    public $validation: ListValidationState;
+    public $rules?: {_: ValidationRule&lt;T[]&gt;};
+    public get $containsScalars(): boolean {
+        return (this.$src.type as Tarray).itemsTypeDef!.kind &#x3D;&#x3D;&#x3D; PropertyTypology.Scalar;
+    }
+
+    public get $isEditing() {
+        return this.$editor !&#x3D;&#x3D; undefined;
+    }
+
+    /**
+     *  get the tracking state of the view element.
+     */
+    public get $tracking(): boolean {
+        const localTracking &#x3D; !(this as unknown as any)[setfreezedSym];
+        return this.$isRoot()
+            ? localTracking
+            : localTracking &amp;&amp; this.$parent().$tracking;
+    }
+
+    /**
+     *  Set the tracking state of the view element.
+     */
+    public set $tracking(newTrackingState: boolean) {
+        const isTracking &#x3D; this.$tracking;
+       if( isTracking !&#x3D;&#x3D; newTrackingState) {
+            
+            if( newTrackingState) {
+                (this as unknown as any)[setfreezedSym] &#x3D;  false;
+                this.validate(ValidationScopes.EnforceState);
+            } else {
+                (this as unknown as any)[setfreezedSym] &#x3D;  true;
+            }
+       }
+    }
+
+
+    public get $src(): IDataInfo&lt;Array&lt;T&gt;&gt; {
+        return MetadataHelper.getTypeInfo(this)!;
+    }
+
+    public get $signalS(): Signal&lt;Mutable&lt;this&gt;&gt; {
+        let result: WritableSignal&lt;Mutable&lt;this&gt;&gt; | undefined &#x3D; undefined;
+        if( !this._signalRef) {
+            const viewmodel &#x3D; this.$src.viewmodel;
+            if( viewmodel) {
+                result &#x3D; viewmodel.modelS as WritableSignal&lt;Mutable&lt;this&gt;&gt;;
+                this._signalRef &#x3D; new WeakRef(result);
+            } else {
+                result &#x3D; signal(asMutable(this));
+                this._signalRef &#x3D; new WeakRef(result);
+            }
+        } else {
+            result &#x3D; this._signalRef?.deref();
+            if( result &#x3D;&#x3D;&#x3D; undefined) {
+                result &#x3D; signal(asMutable(this));
+                this._signalRef &#x3D; new WeakRef(result);
+            }
+        }
+        return result;
+    }
+
+    private refreshSignal() {
+        if( this._signalRef) {
+             const localS &#x3D; this._signalRef?.deref() as WritableSignal&lt;Mutable&lt;this&gt;&gt;;
+            if( localS !&#x3D;&#x3D; undefined) {
+                localS.set(asMutable(this));
+            }
+        }
+    }
+ 
+    constructor(array?: any[], type?: AType, parent?: IViewElement) {
+        super();
+        Object.setPrototypeOf(this, new.target.prototype);
+        // Object.setPrototypeOf( this, Setview.prototype );
+        this.$validation &#x3D; new ListValidationState();
+        (this as unknown as any)[setfreezedSym] &#x3D;&#x3D;&#x3D;  false;
+        if (!type) {
+            // Instance created on array operation as slice
+            return;
+        }
+        if (!array) {
+            array &#x3D; [];
+        }
+        this._parent_ &#x3D; parent;
+        if (!parent) {
+            this.onViewChanged &#x3D; new Subject&lt;DataPayload&gt;();
+            type.prepare(array, null, PATH_ROOT);
+        }
+        const atype &#x3D; type as Tarray;
+        MetadataHelper.link(array, this, atype);
+        // const symbol &#x3D; MetadataHelper.getSymbol();
+        // const obj &#x3D; this as any;
+        // obj[symbol] &#x3D; dataInfo;
+        // this[symbol] &#x3D; dataInfo;
+        if (!atype.isTuple) {
+            if (array &amp;&amp; atype.itemsTypeDef!.kind &#x3D;&#x3D;&#x3D; PropertyTypology.Scalar) {
+                array.forEach((scalarValue) &#x3D;&gt; this.push(scalarValue));
+            } else if (array &amp;&amp; parent) {
+                const sortViews &#x3D; array.map&lt;T&gt;((value, i) &#x3D;&gt; {
+                    atype.prepare(value, array, wrapAsPositionSelector(i));
+                    return atype.itemsTypeDef!.readAsView(value, i, this);
+                }, this);
+                ArrayViewFactory.SortFromTypeDef&lt;T&gt;(sortViews).forEach((e: T) &#x3D;&gt; this.push(e));
+            } else {
+                atype.itemsTypeDef!.prepare(array, undefined, PATH_ROOT);
+                array.forEach((value, i) &#x3D;&gt; {
+                    atype.itemsTypeDef!.prepare(value, undefined, PATH_ROOT);
+                    this.push(atype.itemsTypeDef!.readAsView(value, i, this));
+                }, this);
+            }
+        }
+    }
+
+    public add(input: T, index: number &#x3D; -1) {
+        this.$edit().add(input, index);
+    }
+
+    public update(index: number, input: T) {
+        this.$edit().update(index, input);
+    }
+
+    public $assign(value: PartialData&lt;T&gt;[], isRootAssign: boolean &#x3D; true, reset: boolean &#x3D; false): this {
+
+        if (asArray(value)) {
+           const editor &#x3D; this.$edit(false);
+           try {
+                const isScalar &#x3D; this.$containsScalars;
+                const atype &#x3D; this.$src.type as Tarray;
+                let toRemove: T[] &#x3D; [];
+                if( isScalar) {
+                    if(reset) {
+                        toRemove &#x3D; this.filter((item) &#x3D;&gt; !value.includes(item) as T);
+                        toRemove.forEach((item) &#x3D;&gt; this.remove(item));
+                    }
+                    for (const assignItem of value) {
+                        this.add(assignItem as T, this.length);
+                    }
+                } else {
+                    if(reset &amp;&amp; atype.withIndex &amp;&amp; value.length &gt; 0 &amp;&amp; this.length &gt; 0) {
+                        for (const childItem of this) {
+            
+                            const childItemIndexVal &#x3D; atype.getIndexValue(childItem);
+                
+                            const childItemIndexObj &#x3D; atype.buildIndexObjFromSelectorValue(childItemIndexVal!);
+                            for (let idx &#x3D; 0; idx &lt; value.length; idx++) {
+                                if (isMatchingIndexObj(value[idx], childItemIndexObj)) {
+                                    toRemove.push( childItem);
+                                    break;
+                                }
+                            }
+                        }
+                        toRemove.forEach((item) &#x3D;&gt; this.remove(item));
+                    }
+                    
+                    const chekDeleted &#x3D; this.$isEditing &amp;&amp; this.$editor!.hasDeletedItem;
+                    for (const assignItem of value) {
+            
+                        if (chekDeleted) {
+                            const deletedInfo &#x3D; this.$editor!.indexInfoOfDeletedItem(assignItem);
+                            if (deletedInfo) {
+                                const childView &#x3D; (this.$newChild() as any ).$assign(assignItem as any) as T;
+                                this.add(childView, deletedInfo[0]);
+                                continue;
+                            }
+                        }
+                        
+                        let assignDone &#x3D; false;
+
+                        const indexVal &#x3D; atype.getIndexValue(assignItem);
+            
+                        if(indexVal){
+                            const idxObj &#x3D; atype.buildIndexObjFromSelectorValue(indexVal);
+                            
+                            for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+                                if (isMatchingIndexObj((this[idx] as IViewElement).$src.obj, idxObj)) {
+                                    assignDone &#x3D; true;
+                                    (this[idx] as any).$assign(assignItem as any);
+                                    break;
+                                }
+                            }
+                        }
+                        if (!assignDone) {
+                            const childView &#x3D; (this.$newChild() as any).$assign(assignItem as any) as T;
+                            this.add(childView, this.length);
+                        }
+                    }
+                }
+                if( isRootAssign) {
+                    this.$notifyEvent(ElementNotifications.dataChanged);
+                }
+            } catch (ex) {
+                JoeLogger.error(ex as Error);
+            }
+            finally {
+                this.$tracking &#x3D; true;
+            }
+            
+            
+        }
+        return this;
+    }
+
+    public $children(): IViewElement[] {
+        if (!this.$containsScalars) {
+            const result: IViewElement[] &#x3D; [];
+            for (const i of this) {
+                const di &#x3D; i as any;
+                result.push(di as IViewElement);
+            }
+            return result;
+        }
+        return [];
+    }
+
+    public $getByIndex(...keyValues: (string | number)[]): T | undefined {
+        const selector &#x3D; keyValuesAsIndexSelector(keyValues);
+        const atype &#x3D; this.$src.type as AType;
+        const itemType &#x3D; atype.itemsTypeDef?.def;
+        if (itemType instanceof Tarray &amp;&amp; (itemType as Tarray).isTuple) {
+
+            for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+
+                var path &#x3D; atype.getIndexPath(this[idx]);
+                if (path &#x3D;&#x3D;&#x3D; selector) {
+                    return this[idx];
+                }
+            }
+
+        } else {
+            for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+
+                if (isMatchingSelector((this[idx] as IViewElement), selector)) {
+                    return this[idx];
+                }
+            }
+        }
+
+        return undefined;
+    }
+
+    public $json(): JsonObj {
+        const data: T[] &#x3D; [];
+        if (this.$containsScalars) {
+            for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+                data[idx] &#x3D; this[idx]!;
+            }
+        } else {
+            for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+                data[idx] &#x3D; (this[idx] as IViewElement).$json() as unknown as T;
+            }
+        }
+        return data as unknown as JsonObj;
+    }
+
+    public $clone(parent?: IViewElement): Setview&lt;T&gt; {
+        const cloneObj &#x3D; JSON.parse(JSON.stringify(this.$src.obj)) as T[];
+        return new Setview&lt;T&gt;(cloneObj, this.$src.type as AType, parent);
+    }
+
+    public contains(item: T): boolean {
+        return this.indexOf(item) &gt; -1;
+    }
+
+    public $indexOfPath(path: string): number {
+        if (isTextArray(path)) {
+            return Number.parseInt(extractContent(path));
+        }
+
+        // const tt &#x3D; (this.$src.type as Tarray).itemsTypeDef!.def as any;
+        // const itemType &#x3D; tt.type as string;
+
+        // const idxObj &#x3D; isTextObject(path)
+        //     ? decodeKeyValues(path)
+        //     : (tt as Tobject).buildIndexObjFromSelectorValue(decodeIndexValues(path));
+
+        // for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+        //     if (isMatchingIndexObj((this[idx] as IViewElement).$src.obj, idxObj)) {
+        //         return idx;
+        //     }
+        // }
+        for (let idx &#x3D; 0; idx &lt; this.length; idx++) {
+            if (isMatchingSelector((this[idx] as IViewElement), path)) {
+                return idx;
+            }
+        }
+        return -1;
+    }
+
+    public $edit(withTracking: boolean &#x3D; true): SetviewEditor&lt;T&gt; {
+        if(withTracking &#x3D;&#x3D;&#x3D; false) {
+            this.$tracking &#x3D; false;
+        }
+        if (!this.$editor) {
+            this.$notify(ElementNotifications.editing);
+        }
+        return this.$editor!;
+    }
+
+    /**
+     * Terminate edit mode if any.
+     * @param local (default: false) when &#x27;true&#x27; changes are applied from current element otherwhy from the root element.
+     * @returns this instance
+     */
+    public $endEdit(local: boolean &#x3D; false, raiseNotif: boolean &#x3D; true): this {
+        if (this.$isEditing) {
+            this.$editor!.endEdit(local, raiseNotif);
+        }
+        return this;
+    }
+
+
+
+    /**
+     * Is the current item the root of the doc.
+     */
+    public $isRoot(): boolean {
+        return this._parent_ &#x3D;&#x3D;&#x3D; undefined;
+    }
+    public $newChild&lt;Ta extends IViewElement&gt;(initData?: any): Ta {
+        const tt &#x3D; (this.$src.type as Tarray).itemsTypeDef!.def as any;
+        const itemType &#x3D; tt.type as string;
+        let child: Ta;
+        switch (itemType) {
+            case &#x27;array&#x27;:
+                const atype &#x3D; tt.viewctor as SetviewTypeConstructor;
+                child &#x3D; atype !&#x3D;&#x3D; undefined
+                    ? new atype([], this) as Ta
+                    : ArrayViewFactory.Create([], tt, this) as unknown as Ta;
+                break;
+            case &#x27;map&#x27;:
+                const mtype &#x3D; tt.viewctor as MapviewTypeConstructor;
+                child &#x3D; mtype !&#x3D;&#x3D; undefined
+                    ? new mtype([], this) as Ta
+                    : MapViewFactory.Create({}, tt as MType, this) as unknown as Ta;
+                break;
+            default:
+                const otype &#x3D; tt.viewctor as ObjviewType;
+                child &#x3D; new otype(initData, this) as Ta;
+                break;
+        }
+        tt.prepare(child.$src.obj, this.$src.obj, PATH_UNASSIGNED);
+        child.$edit();
+        return child;
+    }
+
+    /**
+     * Bubble up an an event type to the root element.
+     * 
+     * on each element if a viewModel is linked then the event is notify to the @link(core#types#ElementNotifications | Element Context).
+     * @param event @link(core#enums#ElementNotifications | Event type)
+     * @returns void
+     */
+    public $notify(event: ElementNotifications) {
+        
+        switch (event) {
+            case ElementNotifications.editing:
+                this.$editor ??&#x3D; new SetviewEditor(this, this.$src.obj);
+                break;
+            case ElementNotifications.cancelEdit:
+            case ElementNotifications.endEdit:
+                  this.$validation.clear();
+                  this.$editor &#x3D; undefined;
+                break;
+        
+       }
+            
+       if( this.$tracking) {
+            this.$notifyEvent(event);
+        }
+       
+    }
+
+    protected $notifyEvent(event: ElementNotifications) {
+        this._ver_++;
+
+        const src &#x3D; this.$src;
+        JoeLogger.debug(&#x60;EVENT (${event}) on ${src.type.title} : ${src.path} (ver: ${this._ver_})&#x60;);
+        if (!this.$isRoot()) {
+            this.$parent().$notify(event);
+        }
+        const viewmodel &#x3D; src.viewmodel;
+        if(viewmodel ) {
+            viewmodel.notifyChanges({type: event, source: this});
+        } 
+        this.refreshSignal();
+    }
+    /**
+     * Doc parent item.
+     */
+    public $parent(): IViewElement {
+        return this._parent_ || this;
+    }
+
+    public onViewChanged?: Observable&lt;DataPayload&gt;;
+
+    public remove(input: T) {
+        return this.$edit().remove(input);
+    }
+
+    public removeAt(index: number) {
+        if( index &lt; this.length) {
+            this.remove(this[index]!);
+        }
+    }
+
+    public $root(): IViewElement {
+        let parent &#x3D; this._parent_;
+        while (parent &amp;&amp; !parent.$isRoot()) {
+            if (parent !&#x3D;&#x3D; parent.$parent()) {
+                parent &#x3D; parent.$parent();
+            } else {
+                throw new Error(&#x27;Infinite loop on Objview.$root()!&#x27;);
+            }
+        }
+        return (parent || this) as IViewElement;
+    }
+
+    public $release(): void {
+        this._signal &#x3D; undefined
+
+        if (!this.$containsScalars &amp;&amp; this.length &gt; 0) {
+            this.forEach((item) &#x3D;&gt; (item as IViewElement).$release(), this);
+        }
+        this.$rules &#x3D; undefined;
+        this.$editor &#x3D; undefined;
+        this._parent_ &#x3D; undefined;
+        MetadataHelper.clearTypeInfo(this);
+    }
+
+    public $refresh(data: T[]): void {
+        const src &#x3D; this.$src;
+
+        const atype &#x3D; src.type as Tarray;
+        if (!src.isRoot) {
+            (this.$parent() as any).$refreshChild(pathFromParent(src.path), data);
+        } else {
+            atype.prepare(data, undefined, PATH_ROOT);
+
+            const changeSet &#x3D; [] as ChangeSet;
+
+            if (this.$isEditing) {
+                this.$editor!.writeChangeSet(changeSet);
+                this.$editor!.cancelEdit();
+            }
+
+            src.obj &#x3D; data;
+            if (!atype.containsScalars) {
+                this.forEach((value) &#x3D;&gt; (value as IViewElement).$release());
+            }
+            this.splice(0);
+            this.$src.obj &#x3D; data;
+
+            if (data &amp;&amp; atype.itemsTypeDef!.kind &#x3D;&#x3D;&#x3D; PropertyTypology.Scalar) {
+                data.forEach((scalarValue) &#x3D;&gt; this.push(scalarValue));
+            } else {
+                data.forEach((value, i) &#x3D;&gt; {
+                    atype.itemsTypeDef!.prepare(value, undefined, PATH_ROOT);
+                    this.push(atype.itemsTypeDef!.readAsView(value, i, this));
+                }, this);
+            }
+
+            if (changeSet.length &gt; 0) {
+                this.$edit().applyChangeSet(changeSet);
+            }
+        }
+    }
+
+    public $refreshChild(property: string, data: T): void {
+        const src &#x3D; this.$src;
+        const atype &#x3D; src.type as Tarray;
+        if (!atype.containsScalars) {
+            return;
+        }
+        const array &#x3D; this.$src.obj as any[];
+
+        const index &#x3D; this.$indexOfPath(property);
+
+        const oldData &#x3D; (this[index] as IViewElement).$src.obj;
+        const oldDataIndex &#x3D; array.indexOf(oldData);
+        if (oldData) {
+            MetadataHelper.detach(oldData);
+        }
+
+        array[oldDataIndex] &#x3D; data;
+        const itemInfo &#x3D; atype.itemsTypeDef!;
+        itemInfo.prepare(array, data, property);
+
+        if (index &gt; -1) {
+            this[index] &#x3D; itemInfo.readAsView(data, oldDataIndex, this) as T;
+        }
+    }
+
+    public validate(
+        scope: ValidationScopes &#x3D; ValidationScopes.State,
+        scopeRef?: any
+    ): ValidationState {
+        const type &#x3D; this.$src.type;
+        const validationContext &#x3D; this.$validation;
+        if(!this.$tracking){
+            return validationContext;
+        }
+        type.validate(this, scope, scopeRef);
+        if (this.$rules?._ !&#x3D; undefined) {
+            const errors &#x3D; this.$rules!._.rule(this as unknown as Setview&lt;T&gt;);
+            if (errors &#x3D;&#x3D;&#x3D; undefined) {
+                validationContext.setItemErrors(&#x27;_&#x27;, errors);
+            } else {
+                for (const [ruleName, validationRule] of Object.entries(errors)) {
+                    validationContext.setItemError(
+                        &#x27;_&#x27;,
+                        ruleName,
+                        validationRule as JsonObj | undefined
+                    );
+                }
+            }
+        }
+        corelateValidationWithParents(this);
+        validationContext.debug(type.title + &#x27; - &#x27; + scope, this.$isRoot());
+        if( scope !&#x3D;&#x3D; ValidationScopes.Property) {
+            this.$notify(ElementNotifications.validation);
+        }
+        return validationContext;
+    }
+
+    public $asString(): string {
+        const src &#x3D; this.$src;
+        if (src) {
+            return &#x60;${src.type.title} - ${src.path}&#x60;;
+        }
+        return this.constructor.name;
+    }
+}
+
+ArrayViewFactory.InitializeConstructor(Setview);
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'Setview.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

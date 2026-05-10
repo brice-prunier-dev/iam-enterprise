@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
     "importHelpers": true,
@@ -16,7 +15,8 @@
     "strict": true,
     "target": "es2022",
     "paths": {
-      "@org/iam-enterprise-shared": ["libs/iam-enterprise-shared/src/index.ts"]
+      "@org/iam-enterprise-shared": ["libs/iam-enterprise-shared/src/index.ts"],
+      "@org/joe-fx": ["./libs/joe-fx/src/index.ts"]
     }
   }
 }

@@ -1,0 +1,21 @@
+import { IViewElement, Objview, Tobject } from "../src";
+import { RelationLookupLocalData, RelationLookupLocalDefFactory } from "./_type-relationlookup";
+import { SocietyNameData, SocietyNameType, SocietyNameView } from "./_type-societyname";
+
+
+const LookupLocalSocietyNameDef = RelationLookupLocalDefFactory(SocietyNameType);
+const LookupLocalSocietyNameType = new Tobject(LookupLocalSocietyNameDef);
+export class LookupLocalSocietyNameView
+    extends Objview<RelationLookupLocalData<SocietyNameData>>
+    implements RelationLookupLocalData<SocietyNameData> {
+    constructor(entity?: any, parent?: IViewElement) {
+        super(LookupLocalSocietyNameType, entity, parent);
+    }
+    declare refType: string;
+    declare rev?: string;
+    declare refId: string;
+    declare path: string;
+    title?: string;
+    declare value!: SocietyNameView;
+}
+LookupLocalSocietyNameType.viewctor = LookupLocalSocietyNameView;

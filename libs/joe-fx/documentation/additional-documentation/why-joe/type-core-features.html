@@ -1,0 +1,268 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>joe-fx documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../../" class="navbar-brand">joe-fx documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>JOE type 101</h1>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">export interface BaseProperty {
+  validate( target: any, action: ValidationAction, scope?: string | object | undefined, result?: ValidationResult ): ValidationResult;
+  defaultValue(): any;
+}
+
+export interface BaseType extends BaseProperty {
+  type: AnyTypeKey;
+  title: string;
+}</code></pre></div><p>To make it simple, JOE&#39;s type relies on 2 properties and <s>two</s> three functions</p>
+<p>Properties:</p>
+<ul>
+<li>type: <em>&quot;string&quot;, &quot;boolean&quot;, &quot;number&quot;, &quot;array&quot;</em> or <em>&quot;object&quot;</em>  -&gt; JSON primitives,</li>
+<li>name: <em>Your type name</em>,</li>
+</ul>
+<p>Functions:</p>
+<ul>
+<li>defaultValue(): <em>it can be either a constant or an accessor</em> or undefined,</li>
+<li>validate( ... ): <em>Validation function</em>.</li>
+<li><strong>prepare( ... )</strong>: <em>Enforce current type definition as metadata for the input <code>JSON </code> instance;</em></li>
+</ul>
+<p>As for many ORM, JOE Types are plit in two:</p>
+<h2>Scalar types</h2>
+<ul>
+<li><a href="./types/string.md">string</a></li>
+<li><a href="./types/number.md">number</a></li>
+<li><a href="./types/boolean.md">boolean</a></li>
+<li><a href="./types/date.md">date</a></li>
+</ul>
+<h2>Object types</h2>
+<ul>
+<li><a href="./types/object.md">object</a></li>
+<li><a href="./types/array.md">array</a></li>
+<li><a href="./types/map.md">map</a></li>
+</ul>
+<h2>Core JOE Types defintions</h2>
+<ul>
+<li>An Object type is either an array, a tuple, a map or a regular object.</li>
+<li>JOE Array is either a collection or a tuple.<ul>
+<li>JOE Array&lt; T &gt; is a collection of T where T is either a Scalar or an Object type.</li>
+<li>JOE Array&lt; T1, T2, ... TN &gt; is a Tuple.<ul>
+<li>It is a fixed size array of N element.</li>
+<li>Each element&#39;s type relies on its position</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JOE Map&lt; T &gt; is dictionnary of T.<ul>
+<li>T is either a Scalar or an Object type.</li>
+<li>a Map is an object who&#39;s proterties are of the same type and their name as an index.</li>
+</ul>
+</li>
+<li>Regular JOE&#39;s Object (aka Tobject) can get for properties any JOE Types</li>
+<li>Regular JOE&#39;s Object definition are paired  with a Typescript interface<ul>
+<li>the naming rule is<ul>
+<li>XxxType for JOE Type</li>
+<li>XxxData for Typescript interface</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">
+export const NameType: Tobject = t.object.as( {
+    title: &#39;Name_T&#39;,
+    properties: {
+        firtName: t.string.word,
+        lastName: t.string.word,
+    },
+    index: { id: [&#39;firtName&#39;, &#39;lastName&#39; ], sort: [&#39;lastName&#39;, &#39;firstName&#39; ] }
+} );
+
+export interface NameData {
+    firstName: string;
+    lastName: string;
+}
+</code></pre></div><h2>Core JOE Types priciples</h2>
+<ul>
+<li>Each type is declared as a <strong>const</strong> variable registered into <code>&quot;t&quot; namespace</code>.<ul>
+<li>A type definition is nothing else then an instance of one of the here above types.  </li>
+<li>If necessary you can setup and register your type definition at runtime.</li>
+<li>Registering each type definition in <code>&quot;t&quot; namespace</code> make it possible o retrieve a type by &quot;name&quot; .</li>
+<li><code>&quot;t&quot; namespace</code> expose some helper functions for each flavor of type.</li>
+<li><a href="./types/t.md"><code>&lt;Link to &quot;t&quot; namespace...&gt;</code></a>.</li>
+</ul>
+</li>
+<li>When a JOE Types <strong>prepare(...)</strong> a JSON graph it links each instance of the JSON graph to a <code>DataInfo</code> instance through a <code>Symbol</code> property.<ul>
+<li>It turns an untyped javascript instance into a typed object.</li>
+<li>Each instance <code>DataInfo</code> linked to an instance of the graph indicates its JOE type and give access to its parent element in the hierarchy ( <em>or itself when root</em>).<ul>
+<li>Doing so makes graph navigation bi-directionnal</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/joe-type.png" alt="flow diagram" class="img-responsive"></p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'type-core-features.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
