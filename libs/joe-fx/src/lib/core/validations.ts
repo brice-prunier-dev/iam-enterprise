@@ -4,7 +4,6 @@ import {JsonObj, Mutable, ValidationState} from './types';
 import { PATH_LOCAL, PATH_NEXT, PATH_ROOT } from './constants';
 import {signal, Signal, WritableSignal} from '@angular/core';
 import {asMutable} from './types-helper';
-import { listenerCount } from 'process';
 
 
 export type AsyncValidationRule<T> = (v: T) => Promise<JsonObj | undefined>;

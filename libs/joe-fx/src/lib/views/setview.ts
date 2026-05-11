@@ -29,7 +29,8 @@ import {
     indexObjAsIndexSelector,
     PartialData,
     pathFromParent,
-    ElementNotifications} from '../core';
+    ElementNotifications,
+    JsObject} from '../core';
 import {Tarray, ArrayViewFactory, corelateValidationWithParents, MapViewFactory} from '../types';
 import {SetviewEditor} from './setview-editor';
 
@@ -178,7 +179,7 @@ export class Setview<T extends Scalar | IViewElement>
     public $assign(value: PartialData<T>[], isRootAssign: boolean = true, reset: boolean = false): this {
 
         if (asArray(value)) {
-            const editor = this.$edit(false);
+            this.$edit(false);
             try {
                 const isScalar = this.$containsScalars;
                 const atype = this.$src.type as Tarray;

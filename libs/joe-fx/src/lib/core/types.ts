@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/internal/Observable';
+
 import {
     EStateChanges,
     DataAction,
@@ -8,6 +8,27 @@ import {
     PropertyTypology,
     ValidationScopes,
 } from './enums';
+
+
+export type Subscription = {
+  closed: boolean;
+  unsubscribe(): void;
+  add(teardown: Subscription | (() => void)): void;
+  remove(teardown: Subscription | (() => void)): void;
+}
+
+
+export type Observer<T> {
+  next: (value: T) => void;
+  error: (err: any) => void;
+  complete: () => void;
+}
+
+export type Observable<T> = {
+  subscribe(
+    observer: Partial<Observer<T>> | ((value: T) => void)
+  ): Subscription;
+}
 
 export type JsObject =  Record<PropertyKey, unknown> 
 
@@ -398,7 +419,7 @@ export interface ISetElementOf<T extends Scalar | IViewElement> extends Iterable
  * 
  * - or a Mapview { a view over a JSON object used as dictionnary}
  */
-export type IViewElement = {
+export type IViewElement = JsObject & {
     $canSave: boolean;
     /**
      * Editor instantiated when the view is in an editing mode

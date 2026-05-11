@@ -54,16 +54,27 @@ export function positionIndexInSortedList(
     }
 }
 
+/**
+ * Helper function to remove a list of items from an array
+ * @param list to operate
+ * @param items to remove
+ */
+export function removeFrom<T>(list: T[], items: T[]) {
+    for (const item of items) {
+        const index = list.indexOf(item);
+        if (index > -1) {
+            list.splice(index, 1);
+        }
+    }
+}
+
 export class SetviewEditor<T extends Scalar | IViewElement> implements IEditor {
     
     public readonly editCache: EditCache<[number, T][]>;
   
     public isSortArray: boolean;
 
-    protected get hasScalarItems(): boolean {
-        const type = this._view.$src.type as Tarray;
-        return type.itemsTypeDef!.kind === PropertyTypology.Scalar;
-    }
+    protected readonly hasScalarItems: boolean;
 
     public get hasDeletedItem(): boolean {
         return this.editCache.deleted.length > 0;
@@ -71,6 +82,7 @@ export class SetviewEditor<T extends Scalar | IViewElement> implements IEditor {
 
     constructor(private _view: IViewElement & ISetElementOf<T> & Array<T>, private _obj: T[]) {
         this.editCache = {inserted: [], deleted: [], modified: []};
+        this.hasScalarItems = _view.$containsScalars;
         const t = _view.$src.type as Tarray;
          this.isSortArray = t.hasObjectItems && (t.itemsTypeDef!.def as Tobject<T>).withIndex;
      

@@ -1,4 +1,4 @@
-import {asFunction, asString, isFunction, isJsObject, isString, removeFrom} from './types-helper';
+import {asFunction, asJsObject, asString, isString } from './types-helper';
 import {IElementMessage, IRuntimeSummary, IViewElement, StringMap, JsonObj} from './types';
 import {ElementMessageType} from './enums';
 import {isArrayAssigned, isBlank, isObjAssigned} from './types-tester';
@@ -78,7 +78,7 @@ export class RuntimeError {
         if (asString(payload)) {
             return payload.substring(0, 100);
 
-        } else if (isJsObject(payload)) {
+        } else if (asJsObject(payload)) {
             const error = payload['error'];
             if (error) {
                 return RuntimeError.asString(error);
@@ -92,7 +92,7 @@ export class RuntimeError {
                 return RuntimeError.asString(data);
             }
         }
-        if (isFunction(payload)) {
+        if (asFunction(payload)) {
             return RuntimeError.asString(payload());
         }
         return JSON.stringify(payload).substring(0, 100);

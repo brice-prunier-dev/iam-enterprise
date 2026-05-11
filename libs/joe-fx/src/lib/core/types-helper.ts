@@ -1,5 +1,5 @@
-import {JsObject, JsonObj, Mutable} from './types';
-import {isAssigned, isBlank} from './types-tester';
+import {JsObject, Mutable} from './types';
+import {isBlank} from './types-tester';
 
 export function asString(obj: unknown): obj is string {
     return typeof obj === 'string';
@@ -95,27 +95,12 @@ export function isDate(obj: unknown): boolean {
 }
 
 
-
-/**
- * Helper function to remove a list of items from an array
- * @param list to operate
- * @param items to remove
- */
-export function removeFrom<T>(list: T[], items: T[]) {
-    for (const item of items) {
-        const index = list.indexOf(item);
-        if (index > -1) {
-            list.splice(index, 1);
-        }
-    }
-}
-
 /**
  * Ensure value as start as starting characters.
  * @param value to ensure
  * @param start statement
  * @returns 'value' having 'start' as starter.
  */
-export function ensureStarting(value: string, start: string): string {
+export function ensureStartsWith(value: string, start: string): string {
     return value.startsWith(start) ? value : start + value;
 }
