@@ -24,6 +24,7 @@ export const NULL_Editor: IEditor = {
  * Default Null instance for IViewElement.
  */
 export const NULL_ViewElement: IViewElement = {
+    $assign: ( ) => NULL_ViewElement,
     $children: () => undefined,
     $edit: () => NULL_Editor,
     $endEdit: () => null,
@@ -43,10 +44,7 @@ export const NULL_ViewElement: IViewElement = {
         return this;
     },
     $src: {} as unknown as IDataInfo,
-    validate(
-        scope: ValidationScopes = ValidationScopes.State,
-        scopeRef?: string | boolean | object
-    ): ValidationState {
+    validate( ): ValidationState {
         return {} as unknown as ValidationState;
     },
     $validation: NULL_ValidationState,
@@ -55,7 +53,7 @@ export const NULL_ViewElement: IViewElement = {
     }
 };
 
-export type DataInfoConstructor = new (obj: any, type: any) => IDataInfo;
+export type DataInfoConstructor = new (obj: unknown, type: unknown) => IDataInfo;
 
 let TYPEINFO_CONSTRUCTOR: DataInfoConstructor;
 
@@ -74,7 +72,7 @@ export class MetadataHelper {
     static getTypeInfoWithCheck(obj: JsObject | undefined): IDataInfo | undefined {
         return obj !== undefined && typeof obj === 'object' ? MetadataHelper.getTypeInfo( obj) : undefined;
     }
-    static getTypeInfoSafe(obj: JsObject, type: any): IDataInfo {
+    static getTypeInfoSafe(obj: JsObject, type: unknown): IDataInfo {
         const info = obj[infoSym] as IDataInfo;
         if (info) {
             return info;
@@ -85,7 +83,7 @@ export class MetadataHelper {
         const info = obj[infoSym]  as IDataInfo | undefined;
         return info;
     }
-    static unsureTypeInfo(obj: JsObject, type: AnyType) {
+    static unsureTypeInfo(obj: JsObject, type: unknown) {
         if (!obj[infoSym]) {
             obj[infoSym] = new TYPEINFO_CONSTRUCTOR(obj, type);
         }

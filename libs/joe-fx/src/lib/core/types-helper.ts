@@ -1,5 +1,5 @@
-import {JsObject, JsonObj, Mutable} from './types';
-import {isAssigned, isBlank} from './types-tester';
+import {JsObject, Mutable} from './types';
+import { isBlank} from './types-tester';
 
 export function asString(obj: unknown): obj is string {
     return typeof obj === 'string';

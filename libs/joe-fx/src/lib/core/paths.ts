@@ -1,4 +1,4 @@
-import { asFunction, isJsObject, isNumber, asArray} from './types-helper';
+import { asFunction, asJsObject, isNumber, asArray, isScalar} from './types-helper';
 import {asViewElement, MetadataHelper} from './types-info';
 import { JsObject, OType} from './types';
 import {isBlank, isStringAssigned} from './types-tester';
@@ -98,82 +98,111 @@ function _qualifyPart(part: string): SelectorDef {
 }
 
 function _resolvePath( from: JsObject, selectorDefs: SelectorDef[]): unknown { 
-    let currentElement: unknown = from;
+    let currentElement: JsObject | undefined = from;
     if (_pathNeedPrepare(selectorDefs) && MetadataHelper.isNotPrepared(from)) {
         throw new Error('target should be prepared');
     }
     for (let index = 0; index < selectorDefs.length; index++) {
-        if( currentElement === undefined || currentElement === null) return undefined;
+        if( isBlank(currentElement) ) return undefined;
         const selectorDef = selectorDefs[index];
         switch (selectorDef.type) {
-            case SelectorTypes.Property:
-            case SelectorTypes.ArrayIndexOf: { 
-                const mapGetter = (currentElement as JsObject)['get'];
-                currentElement = asFunction(mapGetter)
-                    ? mapGetter(selectorDef.value)
-                    : (currentElement as Record<string | number, unknown>)[selectorDef.value as string | number];
+            case SelectorTypes.Property: { 
+                const mapGetter: unknown = currentElement['get'];
+                const property: unknown = asFunction(mapGetter) 
+                    ? mapGetter(selectorDef.value) as JsObject
+                    : (currentElement as JsObject)[selectorDef.value as string | number];
+                if( asJsObject(property)) {
+                   currentElement = property;
+                }
+                else if( isScalar(property)) {
+                    return property;
+                }
                 break; 
             }
 
+            case SelectorTypes.ArrayIndexOf: { 
+                if( asArray(currentElement)) {
+                    const item = currentElement[selectorDef.value as number];
+                    if( index === selectorDefs.length -1) {
+                        return item;
+                    }
+                    currentElement = item as JsObject;
+                } 
+                break;
+            }
             case SelectorTypes.ToParent: {
-                const parentGetter = (currentElement as JsObject)['get'];
+                const parentGetter: unknown = (currentElement as JsObject)['get'];
                 currentElement = asFunction(parentGetter)
-                    ? parentGetter()
-                    : MetadataHelper.getTypeInfo(currentElement as JsObject)?.parent?.obj;
+                    ? parentGetter() as JsObject
+                    : MetadataHelper.getTypeInfo(currentElement as JsObject)?.parent?.obj as JsObject;
                 break;
 
             }
                 
 
             case SelectorTypes.ArrayIndexValues: {
-                const array = currentElement as unknown[];
-                const selector = selectorDef.value;
-                currentElement = undefined;
-                if (array.length > 0) {
-                    const dataInfo = MetadataHelper.getTypeInfoWithCheck(array[0] as JsObject);
-                    if (!dataInfo) {
-                        const path = selectorDefs.map((p) => p.value).join(PATH_NEXT);
-                        throw new Error(`${path} is not prepared `);
-                    }
+                 if( asArray(currentElement) && currentElement.length > 0) {
+                    const array = currentElement as JsObject[];
+                    const selector = selectorDef.value as string;
+                    let selectedItem: JsObject | undefined = undefined;
+                    if (array.length > 0) {
+                        const dataInfo = MetadataHelper.getTypeInfoWithCheck(array[0] as JsObject);
+                        if (!dataInfo) {
+                            const path = selectorDefs.map((p) => p.value).join(PATH_NEXT);
+                            throw new Error(`${path} is not prepared `);
+                        }
 
-                    const otype = dataInfo.type as OType;
-                    const idObj = otype.buildIndexObjFromSelectorValue(decodeIndexValues(selector));
+                        const otype = dataInfo.type as OType;
+                        const idObj = otype.buildIndexObjFromSelectorValue(decodeIndexValues(selector));
 
-                    for (const item of array) {
-                        if (isMatchingIndexObj(item, idObj)) {
-                            currentElement = item;
-                            break;
+                        for (const item of array) {
+                            if (isMatchingIndexObj(item, idObj)) {
+                                selectedItem = item as JsObject;
+                                break;
+                            }
                         }
                     }
+                    currentElement = selectedItem;
+                 } else {
+                     throw new Error( 'Should be an array: ' + JSON.stringify(currentElement, null, 2) );
                 }
                 break;
             }
             case SelectorTypes.ArrayIndexObject: {
-                const array = currentElement as unknown[];
-                const idObj = selectorDef.value;
-                currentElement = undefined;
-                if (array.length > 0 && idObj) {
-                    for (const item of array) {
-                        if (isMatchingIndexObj(item, idObj)) {
-                            currentElement = item;
-                            break;
+                if( asArray(currentElement) && currentElement.length > 0) {
+                    const array = currentElement as JsObject[];
+                    const idObj = selectorDef.value;
+                    currentElement = undefined;
+                    if (array.length > 0 && idObj) {
+                        for (const item of array) {
+                            if (isMatchingIndexObj(item, idObj)) {
+                                currentElement = item;
+                                break;
+                            }
                         }
                     }
+                } else {
+                     throw new Error( 'Should be an array: ' + JSON.stringify(currentElement, null, 2) );
                 }
                 break;
             }
             case SelectorTypes.Local:
                 currentElement = from;
                 break;
-            case SelectorTypes.Root:
 
-                currentElement = asViewElement(currentElement)
-                    ? currentElement.$root()
-                    : MetadataHelper.getTypeInfo(currentElement)!.root().obj;
+            case SelectorTypes.Root: {
+                const caller = currentElement as JsObject;
+                if( asViewElement(caller)) {
+                    currentElement = caller.$root();
+                } else {
+                    currentElement = MetadataHelper.getTypeInfo(caller)?.root().obj as JsObject;
+                }
                 break;
+            }
+
+                
 
             default:
-                currentElement = currentElement;
                 break;
         }
         if (currentElement === undefined) {
@@ -183,71 +212,86 @@ function _resolvePath( from: JsObject, selectorDefs: SelectorDef[]): unknown {
     return currentElement;
 }
 
-function _write(current: unknown, pathParts: SelectorDef[], value: unknown): void {
-    let result = current;
-    if (_pathNeedPrepare(pathParts) && MetadataHelper.isNotPrepared(current)) {
-        throw new Error('target should be prepared');
-    }
-    for (let index = 0; index < pathParts.length; index++) {
-        const segmentPart = pathParts[index]!;
-        switch (segmentPart.type) {
-            case SelectorTypes.Property:
-            case SelectorTypes.ArrayIndexOf:
-                if (index === pathParts.length - 1) {
-                    isFunction(result.set) ? result.set(value) : (result[segmentPart.value] = value);
+function _write(current: JsObject, segmentPart: SelectorDef, value: unknown): void {
+    let currentElement = current;
+    switch (segmentPart.type) {
+            case SelectorTypes.Property: { 
+                const mapSetter: unknown = currentElement['set'];
+                if( asFunction(mapSetter) ) {
+                    mapSetter(segmentPart.value) 
+                } else {
+                  (currentElement as JsObject)[segmentPart.value as string | number] = value;
                 }
-                result = isFunction(result.get)
-                    ? result.get(segmentPart.value)
-                    : result[segmentPart.value];
+                break; 
+            }
 
-                break;
-
-            case SelectorTypes.ToParent:
-                result = result.parent();
-                break;
-
-            case SelectorTypes.ArrayIndexObject:
-                const array = result as unknown[];
-                const selector = segmentPart.value;
-                if (array.length > 0) {
-                    const dataInfo = MetadataHelper.getTypeInfoWithCheck(array[0]);
-                    let idObj;
-                    if (dataInfo) {
-                        const otype = dataInfo.type as OType;
-                        idObj = otype.buildIndexObjFromSelectorValue(selector);
+            case SelectorTypes.ArrayIndexOf: { 
+                if( asArray(currentElement) && currentElement.length > 0) {
+                    const item = currentElement[segmentPart.value as number];
+                    const obj = item as JsObject;
+                    if( asViewElement(obj)) {
+                        obj.$assign(value);
                     } else {
-                        const path = pathParts.map((p) => p.value).join(PATH_NEXT);
-                        throw new Error(`${path} is not prepared `);
+                         currentElement[segmentPart.value as number] = value;
                     }
-                    for (let idx = 0; idx < array.length; idx++) {
-                        const element = array[idx];
-                        if (isMatchingIndexObj(element, idObj)) {
-                            result = element;
-                            break;
+                    currentElement = item as JsObject;
+                 } else {
+                     throw new Error( 'Should be an array: ' + JSON.stringify(currentElement, null, 2) );
+                }
+                break;
+            }
+
+
+         case SelectorTypes.ArrayIndexValues: {
+                 if( asArray(currentElement) && currentElement.length > 0) {
+                    const array = currentElement as JsObject[];
+                    const selector = segmentPart.value as string;
+                    let selectedItem: JsObject | undefined = undefined;
+                    if (array.length > 0) {
+                        const dataInfo = MetadataHelper.getTypeInfoWithCheck(array[0] as JsObject);
+                       
+                        const otype = dataInfo?.type as OType;
+                        const idObj = otype.buildIndexObjFromSelectorValue(decodeIndexValues(selector));
+
+                        for (const item of array) {
+                            if (isMatchingIndexObj(item, idObj)) {
+                                selectedItem = item as JsObject;
+                                if( asViewElement(selectedItem)) {
+                                    selectedItem.$assign(value);
+                                } 
+                                break;
+                            }
+                        }
+                    }
+                 } else {
+                     throw new Error( 'Should be an array: ' + JSON.stringify(currentElement, null, 2) );
+                }
+                break;
+            }
+            
+        case SelectorTypes.ArrayIndexObject: {
+                if( asArray(currentElement) && currentElement.length > 0) {
+                    const array = currentElement as JsObject[];
+                    const idObj = segmentPart.value;
+                    if (array.length > 0 && idObj) {
+                        for (const item of array) {
+                            if (isMatchingIndexObj(item, idObj)) {
+                                if( asViewElement(item)) {
+                                    item.$assign(value);
+                                }
+                                break;
+                            }
                         }
                     }
                 } else {
-                    return undefined;
+                     throw new Error( 'Should be an array: ' + JSON.stringify(currentElement, null, 2) );
                 }
                 break;
-
-            case SelectorTypes.Local:
-                result = current;
-                break;
-            case SelectorTypes.Root:
-                result = isFunction(result.$root)
-                    ? result.$root()
-                    : MetadataHelper.getTypeInfo(result)!.root().obj;
-                break;
-
-            default:
-                result = result;
-                break;
-        }
-        if (result === undefined) {
-            return undefined;
-        }
+            }
+       
     }
+
+    
 }
 
 /**
@@ -262,7 +306,7 @@ export function countChar(str: string, char: string): number {
  * @param string as "Xxx" or "Xxx,#12" or "Xxx,##1.23"
  * @returns Xxx or  [Xxx, 12] or [Xxx, 1.23]
  */
-export function decodeIndexValues(stringValue: string): string | number | (string | number)[] {
+export function decodeIndexValues(stringValue: string): string | number | boolean | (string | number | boolean)[] {
     if (isIndexSelector(stringValue)) {
         stringValue = extractContent(stringValue);
     }
@@ -271,7 +315,7 @@ export function decodeIndexValues(stringValue: string): string | number | (strin
     return values.length === 1 ? values[0] : values;
 }
 
-export function decodeKeyValues(pathPart: string): Record<string, string | number> {
+export function decodeKeyValues(pathPart: string): Record<string, string | number| boolean>  {
     if (isTextObject(pathPart)) {
         pathPart = extractContent(pathPart);
     }
@@ -280,14 +324,14 @@ export function decodeKeyValues(pathPart: string): Record<string, string | numbe
     }
     return pathPart
         .split(KEYVALUEPAIR_SEPARATOR)
-        .map<[string, string | number]>((s) => {
+        .map<[string, string | number | boolean]>((s) => {
             const tmp = s.split(KEYVALUE_SEPARATOR);
             return [tmp[0].trim(), decodeOneSelectorValue(tmp[1].trim())];
         })
         .reduce((r, v) => {
             r[v[0]] = v[1];
             return r;
-        }, {} as Record<string, string | number>);
+        }, {} as Record<string, string | number| boolean>);
 }
 
 /**
@@ -295,7 +339,13 @@ export function decodeKeyValues(pathPart: string): Record<string, string | numbe
  * @param stringValue string | number  as Xxx or #12 or ##1.23
  * @returns Xxx or 12 or 1.23
  */
-export function decodeOneSelectorValue(stringValue: string): string | number {
+export function decodeOneSelectorValue(stringValue: string): string | number | boolean {
+    if( stringValue === 'true') {
+        return true;
+    }
+    if( stringValue === 'false') {
+        return false;
+    }
     return stringValue[0] === NUMERIC_PREFIX
         ? stringValue[1] === NUMERIC_PREFIX
             ? Number.parseFloat(stringValue.substring(2))
@@ -354,7 +404,7 @@ export function indexObjAsIndexSelector(value: any): string {
                 .join(KEYVALUEPAIR_SEPARATOR)
         );
 
-    } else if (isJsObject(value)) {
+    } else if (asJsObject(value)) {
         return wrapAsIndexSelector(
             Object.values(value)
             .map((s) => _encodeOneSelectorValue(s as string | number))
@@ -380,7 +430,7 @@ function isIndexSelector(text: string): boolean {
  * @param instance object to test
  * @param selector key definition: {"id":"Xxx""} or {"@>id":"Xxx"}
  */
-export function isMatchingIndexObj(instance: any, selector: any): boolean {
+export function isMatchingIndexObj(instance: JsObject, selector: any): boolean {
     let matching = false;
     for (const key in selector) {
         if (selector.hasOwnProperty(key)) {
@@ -614,7 +664,14 @@ export function wrapAsPositionSelector(index: number | string): string {
         : `[${stringValue}]`;
 }
 
-export function writePath(current: any, pathStmt: string, value: any) {
+export function writePath(current: JsObject, pathStmt: string, value: unknown) {
     const pathParts: SelectorDef[] = parsePart(pathStmt);
-    const result = _write(current, pathParts, value);
+    const lastPart = pathParts[pathParts.length - 1];
+    let target = current;
+    if( pathParts.length > 1) {
+        const toParentParts = pathParts.slice(0, pathParts.length - 1);
+        target = _resolvePath(current, toParentParts) as JsObject;
+       
+    }
+    _write(target, lastPart, value);
 }

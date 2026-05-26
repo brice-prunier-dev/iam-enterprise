@@ -103,8 +103,8 @@ export type ArrayItemProperty = BaseProperty & ElementTypeBehaviour &  {
     def: (AnyDef & BaseType) | Array<AnyDef & BaseType>;
 
     assignNewViews(obj: unknown, view: IViewElement, isRootAssign: boolean): void;
-    defaultValue(typename?: string | number, asEntity?: boolean): any;
-    readAsView(obj: unknown, idx: number, parentView: IViewElement): any;
+    defaultValue(typename?: string | number, asEntity?: boolean): unknown;
+    readAsView(obj: unknown, idx: number, parentView: IViewElement): unknown;
 
     // getIndexPath(i: number, item: any): string;
 }
@@ -398,7 +398,7 @@ export interface ISetElementOf<T extends Scalar | IViewElement> extends Iterable
  * 
  * - or a Mapview { a view over a JSON object used as dictionnary}
  */
-export type IViewElement = {
+export type IViewElement = JsObject & {
     $canSave: boolean;
     /**
      * Editor instantiated when the view is in an editing mode
@@ -438,6 +438,7 @@ export type IViewElement = {
     $parent(): IViewElement;
     $release(): void;
     $root(): IViewElement;
+    $assign(valueToAssign: unknown, isRootAssign?: boolean): IViewElement;
     /**
      * Check the validity of the current instance over its `Type Model'.
      * 
@@ -490,7 +491,7 @@ export type IndexableType = {
      * return will be { id: 5 };
      * @param keyDef values matching the index definition
      */
-    buildIndexObjFromSelectorValue(keyDef: string | number | (string | number)[]): object;
+    buildIndexObjFromSelectorValue(keyDef: string | number | boolean | (string | number | boolean)[]): object;
     /**
      * return the path segment that identifies `obj`. 
      * @example

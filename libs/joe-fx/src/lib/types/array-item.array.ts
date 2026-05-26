@@ -1,5 +1,5 @@
 import {
-    PATH_ROOT,
+    
     wrapAsPositionSelector,
     IViewElement,
     PropertyTypology,
@@ -7,17 +7,19 @@ import {
     BaseType,
     ArrayItemProperty,
     AType,
-    isViewElement,
+    asViewElement,
     asArray,
     ValidationState,
     ValidationScopes,
     extractContent,
     Scalar,
-    ISetElementOf
+    ISetElementOf,
+    JsObject
 } from '../core';
 import {TarraySimpleItem} from './array-item.simple';
 import {TarrayTupleItem} from './array-item.tuple';
 import {ArrayViewFactory} from './factory-aview';
+import { Tobject } from './object';
 
 /**
  * Claas that implement ArrayItemProperty for array having array has child item
@@ -43,30 +45,33 @@ export class TarrayArrayItem implements ArrayItemProperty {
 
     // #region Constructors
 
-    constructor(def: AType, required: boolean = true) {
+    constructor(def: AType, required = true) {
         this.required = required;
         this.kind = PropertyTypology.List;
         this.def = def;
         let item: AnyDef | BaseType;
-        switch (def.itemsTypeDef!.kind) {
-            case PropertyTypology.List:
+        switch (def.itemsTypeDef?.kind) {
+            case PropertyTypology.List: {
                 const listTypeDef = def.itemsTypeDef as TarrayArrayItem;
                 item = listTypeDef.item;
                 this.typology = listTypeDef.item.title;
                 this.size = listTypeDef.def.size;
                 break;
+            }
             case PropertyTypology.Object:
-            case PropertyTypology.Scalar:
+            case PropertyTypology.Scalar: {
                 const singleTypeDef = def.itemsTypeDef as TarraySimpleItem;
                 item = singleTypeDef.def;
                 this.typology = singleTypeDef.def.title;
                 break;
-            default:
+            }
+            default: {
                 const tupleTypeDefs = def.itemsTypeDef as TarrayTupleItem;
                 this.typology = tupleTypeDefs.title;
                 this.kind = PropertyTypology.Tuple;
-                item = tupleTypeDefs.def[0]!;
+                item = tupleTypeDefs.def[0];
                 break;
+            }
         }
         this.item = item;
     }
@@ -100,7 +105,7 @@ export class TarrayArrayItem implements ArrayItemProperty {
 
     // #region Public Methods
 
-    defaultValue(typename?: string | number, asEntity?: boolean): any {
+    defaultValue(): unknown {
         return this.def.defaultValue();
     }
 
@@ -110,15 +115,16 @@ export class TarrayArrayItem implements ArrayItemProperty {
 
     /**
      * prepare "metadata info" related to a json node : parent, path & type.
-     * @param obj reference to the json node to prepare.
+     * @param array reference to the json node to prepare.
      * @param parent parent iparent json node.
      * @param path relative path from parent.
      */
-    prepare(obj: any, parent: any, path: string = PATH_ROOT) {
-        if (obj && asArray(obj)) {
+    prepare(instance: unknown) {
+        const array = instance as unknown[];
+        if (array && asArray(array) && !this.def.containsScalars) {
             let idx = 0;
-            for (const item of obj) {
-                (this.def as AType).prepare(item, obj, wrapAsPositionSelector(idx++));
+            for (const item of array) {
+                (this.def as AType).prepare(item as JsObject, instance as JsObject, wrapAsPositionSelector(idx++));
             }
         }
     }
@@ -130,96 +136,104 @@ export class TarrayArrayItem implements ArrayItemProperty {
      * @param parentView reference pn the parent setview
      * @returns
      */
-    readAsView(data: any, idx: number, parentView: IViewElement): any {
+    readAsView(data: unknown, idx: number, parentView: IViewElement): IViewElement {
         // const key = wrapAsPositionSelector(idx);
         // const array = parentView.$src.obj;
         // this.def.prepare(data, array, key);
         // return this.def.viewctor
         // ? new this.def.viewctor(obj, this.def, view)
         // : ArrayViewFactory.Create(obj, this.def, view);
-
+        const instance = data as unknown[];
         const array = this.def.withIndex 
-            ? ArrayViewFactory.SortFromTypeDef(data, this.def as any)
+            ? ArrayViewFactory.SortFromTypeDef(instance, this.item as Tobject<unknown>)
             : data as [];
         const childArrayView = this.def.viewctor
-            ? new this.def.viewctor(data, parentView)
+            ? new this.def.viewctor(instance, parentView)
             : ArrayViewFactory.Create(array, this.def, parentView);
         // childArrayView.$src.setPath(key);
         return childArrayView;
     }
 
-    public assignNewViews(obj: any, parentSetView: IViewElement & ISetElementOf<Scalar | IViewElement>, isRootAssign: boolean) {
+    public assignNewViews(obj: unknown, parentSetView: IViewElement & ISetElementOf<Scalar | IViewElement>, isRootAssign: boolean) {
         const arrayToAssign = obj as (Scalar | IViewElement)[];
-        try {
+    
             if (this.hasScalarItem) {
                 
                 for (let i = 0; i < arrayToAssign.length; i++) {
                     let itemToAssign = arrayToAssign[i];
                     if (itemToAssign === undefined) {
-                        itemToAssign = this.def.defaultValue();
+                        itemToAssign = this.def.defaultValue() as Scalar | IViewElement;
                     }
-                    parentSetView.add(itemToAssign!);
+                    parentSetView.add(itemToAssign);
                 }
             } else {
     
                 for (let i = 0; i < arrayToAssign.length; i++) {
                     const itemToAssign = arrayToAssign[i];
                     const newChild = parentSetView.$newChild();
-                    (newChild as any).$assign(itemToAssign, isRootAssign);
+                    newChild.$assign(itemToAssign, isRootAssign);
                     parentSetView.add(newChild);
                 }
-            }
-        }
-        finally{
-
-        }
-
-       
+            }      
 
     }
 
 
 
 
-    unprepare(obj: any) {
+    unprepare(obj: JsObject) {
         this.def.unprepare(obj);
     }
 
-    validate(state: ValidationState, target: any, scope: ValidationScopes, scopeRef?: any): void {
+    validate(state: ValidationState, target: unknown, scope: ValidationScopes, scopeRef?:  string | IViewElement): void {
         const childScope =
             scope === ValidationScopes.EnforceState
                 ? ValidationScopes.EnforceState
                 : ValidationScopes.State;
 
-        const array = target as any[];
-        const childTyp = this.def as BaseType;
+        const array = target as unknown[];
+        const childArrayType = this.def as BaseType;
         switch (scope) {
-            case ValidationScopes.Property:
-                const newChildIndex = Number.parseInt(extractContent(scopeRef));
-                const newChild = array[newChildIndex];
-                state.setItemErrors(
-                    scopeRef,
-                    isViewElement(newChild)
-                        ? newChild.validate(ValidationScopes.State).errors
-                        : childTyp.validate(newChild, childScope).errors
-                );
+            case ValidationScopes.Property: {
+                const childIndex = Number.parseInt(extractContent(scopeRef as string));
+                const propertyArray = array[childIndex];
+                const propertyArrayElement = propertyArray as JsObject;
+                const property = scopeRef as string;
+                if( asViewElement(propertyArrayElement) ) {
+
+                   state.setItemErrors( 
+                        property,
+                        propertyArrayElement.validate(ValidationScopes.State).errors);
+                } else {
+                       state.setItemErrors( 
+                            property,
+                            childArrayType.validate(propertyArray, childScope).errors);
+                 }   
 
                 break;
-            case ValidationScopes.State:
+            }
+            case ValidationScopes.State: {
                 for (let i = 0; i < array.length; i++) {
                     const child = array[i];
-                    if (childTyp.containsScalars) {
-                        state.setItemErrors(`[${i}]`, childTyp.validate(child, childScope).errors);
+                    const childElement = child as JsObject;
+                    if (childArrayType.containsScalars) {
+                        state.setItemErrors(`[${i}]`, childArrayType.validate(child, childScope).errors);
                     } else {
-                        state.setItemErrors(
-                            `[${i}]`,
-                            isViewElement(child)
-                                ? child.validate(childScope).errors
-                                : childTyp.validate(child, childScope).errors
-                        );
+                        if( asViewElement(childElement) ) {
+
+                            state.setItemErrors( 
+                                    `[${i}]`,
+                                    childElement.validate(ValidationScopes.State).errors);
+                        } else {
+                            state.setItemErrors( 
+                                        `[${i}]`,
+                                        childArrayType.validate(child, childScope).errors);
+                        }   
+
                     }
                 }
                 break;
+            }
         }
     }
 

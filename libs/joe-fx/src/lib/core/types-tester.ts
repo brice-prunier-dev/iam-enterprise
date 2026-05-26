@@ -1,5 +1,6 @@
-import { JsObject, Json, JSON_NULL, JsonDoc, JsonObj } from "./types";
-import { asString } from "./types-helper";
+import { isFunction } from "util";
+import { JsObject, Json, JsonObj } from "./types";
+import { asString, asJsObject } from "./types-helper";
 
 /**
  * Test that input value is an object without any property.
@@ -74,7 +75,7 @@ export function isDataAssigned(value: Json): boolean {
  * @param value to test 
  * @returns value is not assigned.
  */
-export function isBlank(value: any): boolean {
+export function isBlank(value: unknown): boolean {
     return value === undefined || value === null;
 }
 
@@ -83,7 +84,7 @@ export function isBlank(value: any): boolean {
  * @param value to test 
  * @returns value is an object assigned.
  */
-export function isObjAssigned(value: any): boolean {
+export function isObjAssigned(value: unknown): boolean {
     return !isBlank(value) && typeof value === 'object' && Object.getOwnPropertyNames(value).length > 0;
 }
 
@@ -92,7 +93,7 @@ export function isObjAssigned(value: any): boolean {
  * @param value to test 
  * @returns value is an array with an item.
  */
-export function isArrayAssigned(value: any): boolean {
+export function isArrayAssigned(value: unknown): boolean {
     return Array.isArray(value) && value.length > 0;
 }
 /**
@@ -100,7 +101,7 @@ export function isArrayAssigned(value: any): boolean {
  * @param value to test 
  * @returns value is a meaningfull string.
  */
-export function isStringAssigned(value: any): boolean {
+export function isStringAssigned(value: unknown): boolean {
     return typeof value === 'string' && value.trim().length > 0;
 }
 
@@ -109,8 +110,8 @@ export function isStringAssigned(value: any): boolean {
  * @param value to test 
  * @returns value is a Schema
  */
-export function isSchema(value: any): boolean {
-    const v = value?.type;
+export function isSchema(value: JsObject): boolean {
+    const v = value['type'] as string;
     return (
         v !== undefined &&
         v !== null &&
@@ -128,8 +129,8 @@ export function isSchema(value: any): boolean {
     );
 }
 
-export function isJoeType(value: any): boolean {
-    return isSchema(value) && typeof value.validate === 'function';
+export function isJoeType(value: JsObject): boolean {
+    return isSchema(value) &&  isFunction(value['validate']);
 }
 
 /**
@@ -137,7 +138,7 @@ export function isJoeType(value: any): boolean {
  * @param value to test 
  * @returns value is an empty string.
  */
-export function isEmptyString(value: any): boolean {
+export function isEmptyString(value: unknown): boolean {
     return typeof value === 'string' && value.trim().length === 0;
 }
 
@@ -183,7 +184,7 @@ export function containsString(
  * @param b2 second array
  * @returns the two array are the same 
  */
-export function sameArrays(a1: any[] | undefined, a2: any[] | undefined): boolean {
+export function sameArrays(a1: unknown[] | undefined, a2: unknown[] | undefined): boolean {
     if (a1 === undefined && a2 === undefined) {
         return true;
     }
@@ -204,7 +205,7 @@ export function sameArrays(a1: any[] | undefined, a2: any[] | undefined): boolea
  * @param o2 second object
  * @returns the two object have the same properties 
  */
-export function sameObject(o1: any, o2: any): boolean {
+export function sameObject(o1: JsObject, o2: JsObject): boolean {
     if (o1 === o2 || (o1 === undefined && o2 === undefined)) {
         return true;
     }
@@ -228,7 +229,7 @@ export function sameObject(o1: any, o2: any): boolean {
  * @param isAsc 
  * @returns 0 when equals or 1 when  a > b or -1 when a < b.
  */
-export function compare(a: any, b: any, isAsc: boolean): number {
+export function compare(a: string | number | boolean, b: string | number | boolean, isAsc: boolean): number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
@@ -239,14 +240,14 @@ export function compare(a: any, b: any, isAsc: boolean): number {
  * @param sort property to compare (descending when terminated by !)
  * @returns 
  */
-export function compareObjProp(a: any, b: any, sort: string): number {
+export function compareObjProp(a: JsObject, b: JsObject, sort: string): number {
     let propname = sort;
     let isAsc = true;
     if (sort.endsWith('!')) {
         propname = sort.substring(0, sort.length - 1);
         isAsc = false;
     }
-    return compare(a[propname], b[propname], isAsc);
+    return compare(a[propname] as string | number | boolean, b[propname] as string | number | boolean, isAsc);
 }
 /**
  * comparer function for a set of properties on two different object. 
@@ -255,37 +256,37 @@ export function compareObjProp(a: any, b: any, sort: string): number {
  * @param sort array of property to compare(max 5) (descending when terminated by !)
  * @returns 
  */
-export function compareObj(a: any, b: any, sort: string[]): number {
+export function compareObj(a: JsObject, b: JsObject, sort: string[]): number {
     switch (sort.length) {
         case 1: {
-            return compareObjProp(a, b, sort[0]!);
+            return compareObjProp(a, b, sort[0]);
         }
         case 2: {
-            const comp1 = compareObjProp(a, b, sort[0]!);
-            return comp1 !== 0 ? comp1 : compareObjProp(a, b, sort[1]!);
+            const comp1 = compareObjProp(a, b, sort[0]);
+            return comp1 !== 0 ? comp1 : compareObjProp(a, b, sort[1]);
         }
         case 3: {
-            const comp1 = compareObjProp(a, b, sort[0]!);
-            const comp2 = compareObjProp(a, b, sort[1]!);
-            return comp1 !== 0 ? comp1 : comp2 !== 0 ? comp2 : compareObjProp(a, b, sort[2]!);
+            const comp1 = compareObjProp(a, b, sort[0]);
+            const comp2 = compareObjProp(a, b, sort[1]);
+            return comp1 !== 0 ? comp1 : comp2 !== 0 ? comp2 : compareObjProp(a, b, sort[2]);
         }
         case 4: {
-            const comp1 = compareObjProp(a, b, sort[0]!);
-            const comp2 = compareObjProp(a, b, sort[1]!);
-            const comp3 = compareObjProp(a, b, sort[2]!);
+            const comp1 = compareObjProp(a, b, sort[0]);
+            const comp2 = compareObjProp(a, b, sort[1]);
+            const comp3 = compareObjProp(a, b, sort[2]);
             return comp1 !== 0
                 ? comp1
                 : comp2 !== 0
                 ? comp2
                 : comp3 !== 0
                 ? comp3
-                : compareObjProp(a, b, sort[3]!);
+                : compareObjProp(a, b, sort[3]);
         }
         case 5: {
-            const comp1 = compareObjProp(a, b, sort[0]!);
-            const comp2 = compareObjProp(a, b, sort[1]!);
-            const comp3 = compareObjProp(a, b, sort[2]!);
-            const comp4 = compareObjProp(a, b, sort[3]!);
+            const comp1 = compareObjProp(a, b, sort[0]);
+            const comp2 = compareObjProp(a, b, sort[1]);
+            const comp3 = compareObjProp(a, b, sort[2]);
+            const comp4 = compareObjProp(a, b, sort[3]);
             return comp1 !== 0
                 ? comp1
                 : comp2 !== 0
@@ -294,7 +295,7 @@ export function compareObj(a: any, b: any, sort: string[]): number {
                 ? comp3
                 : comp4 !== 0
                 ? comp4
-                : compareObjProp(a, b, sort[4]!);
+                : compareObjProp(a, b, sort[4]);
         }
         default:
             throw new Error('Invalid comparaison...');

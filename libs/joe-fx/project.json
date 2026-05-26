@@ -13,8 +13,7 @@
         "main": "libs/joe-fx/src/index.ts",
         "tsConfig": "libs/joe-fx/tsconfig.lib.json",
         "assets": ["libs/joe-fx/*.md"],
-        "format": ["cjs"],
-        "generatePackageJson": true
+        "format": ["cjs"]
       }
     },
     "test": {

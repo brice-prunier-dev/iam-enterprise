@@ -4,7 +4,9 @@
     "outDir": "../../dist/out-tsc",
     "declaration": true,
     "moduleResolution": "node10",
-    "types": ["node"]
+    "types": ["node"],
+    "noUnusedLocals": false,
+    "rootDir": "./src"
   },
   "include": ["src/**/*.ts"],
   "exclude": [
