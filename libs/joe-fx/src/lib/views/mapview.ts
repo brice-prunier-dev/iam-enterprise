@@ -33,7 +33,6 @@ import {
 } from '../core';
 import {Tmap, MapViewFactory, corelateValidationWithParents, ArrayViewFactory} from '../types';
 import {MAPKEY, MapviewEditor} from './mapview-editor';
-import {Signal, WritableSignal, signal} from '@angular/core';
 
 const mapfreezedSym = Symbol('__freezed__');
 
@@ -165,9 +164,8 @@ export class Mapview<T extends Scalar | IViewElement>
      * @returns 
      */
     public $assign(valueToAssign: Record<string, PartialData<T>>, isRootAssign: boolean = true): this {
-        if (asObject(valueToAssign)) {
+        if (valueToAssign !== undefined) {
             const editor = this.$edit(false);
-            const mapType = this.$src.type as Tmap;
             try {
                 for (const entry of Object.entries(valueToAssign)) {
                     const key = entry[0];

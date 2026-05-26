@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/internal/Observable';
+
 import {
     EStateChanges,
     DataAction,
@@ -8,6 +8,27 @@ import {
     PropertyTypology,
     ValidationScopes,
 } from './enums';
+
+
+export type Subscription = {
+  closed: boolean;
+  unsubscribe(): void;
+  add(teardown: Subscription | (() => void)): void;
+  remove(teardown: Subscription | (() => void)): void;
+}
+
+
+export type Observer<T> {
+  next: (value: T) => void;
+  error: (err: any) => void;
+  complete: () => void;
+}
+
+export type Observable<T> = {
+  subscribe(
+    observer: Partial<Observer<T>> | ((value: T) => void)
+  ): Subscription;
+}
 
 export type JsObject =  Record<PropertyKey, unknown> 
 

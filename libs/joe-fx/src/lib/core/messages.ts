@@ -1,4 +1,4 @@
-import {asString, asFunction, asJsObject, isString} from './types-helper';
+import {asFunction, asJsObject, asString, isString } from './types-helper';
 import {IElementMessage, IRuntimeSummary, IViewElement, StringMap, JsonObj} from './types';
 import {ElementMessageType} from './enums';
 import {isArrayAssigned, isBlank, isObjAssigned} from './types-tester';
